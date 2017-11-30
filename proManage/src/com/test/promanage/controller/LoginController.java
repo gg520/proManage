@@ -27,4 +27,9 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping("/quit")
+	public String quit()throws Exception{
+		return "login";
+	}
+	
 }
