@@ -2,9 +2,11 @@ package com.test.promanage.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.test.promanage.po.TableAdmin;
 import com.test.promanage.po.TableUser;
-
+@Service
 public interface UserService {
 
 	/**

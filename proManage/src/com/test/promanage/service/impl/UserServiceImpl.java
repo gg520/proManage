@@ -3,6 +3,7 @@ package com.test.promanage.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.test.promanage.mapper.TableAdminMapper;
 import com.test.promanage.mapper.TableUserMapper;
@@ -12,6 +13,7 @@ import com.test.promanage.po.TableUser;
 import com.test.promanage.po.TableUserExample;
 import com.test.promanage.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
