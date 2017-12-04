@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,17 +13,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>首页</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	 <!-- Bootstrap -->
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	
+    <!-- Bootstrap -->
     <link href="<%=path%>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<%=path%>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -45,22 +41,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <link href="<%=path %>/vendors/cropper/dist/cropper.min.css" rel="stylesheet">
   </head>
-  
+
   <body class="nav-md">
-  
+  <script type="text/javascript" src="<%=path%>/vendors/jquery/dist/jquery.js"></script>
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="${pageContext.request.contextPath }/index" class="site_title"><i class="fa fa-paw"></i> <span>项目管理系统</span></a>
+             <a href="${pageContext.request.contextPath }/index" class="site_title"><i class="fa fa-paw"></i> <span>  项目管理系统  </span></a> 
             </div>
-
             <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            
-              <c:choose>
+            <!-- 欢迎头 -->
+             <c:choose>
               	<c:when test="${sessionScope.user!=null }">
               	<div class="profile clearfix">
               <div class="profile_pic">
@@ -83,15 +76,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
               	</c:otherwise>
               </c:choose>
-             
-                
-              
-            <!-- /menu profile quick info -->
+
+            <!-- /欢迎头结束 -->
 
             <br />
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+			
+            <!-- 菜单 -->
+           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>操作</h3>
                 <ul class="nav side-menu">
@@ -104,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-sitemap"></i> 项目管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="#level1_1">参与的项目</a>
+                        <li><a href="${pageContext.request.contextPath }/admin/project/proList">项目列表</a>
                         <!-- <li><a>Level One<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <li class="sub_menu"><a href="javascript:void(0)">Level Two</a>
@@ -159,9 +151,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
 
             </div>
-            <!-- /sidebar menu -->
+            <!-- /菜单 -->
 
-            <!-- /menu footer buttons -->
             <!-- /菜单下面的按钮 -->
             <div class="sidebar-footer hidden-small">
               
@@ -170,20 +161,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </a>
             </div>
             <!-- /菜单下面的按钮 -->
-            <!-- /menu footer buttons -->
           </div>
         </div>
 
-        <!-- top navigation -->
+        <!-- 登陆显示右上角状态 -->
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
+            
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
-
+              <div class="nav toggle">
+              	<!-- 通知消息 -->
+              	
+              	 <marquee scrollamount="3">
+              	 
+              		<FONT face=楷体_GB2312 color=#ff0000 size=3>${applicationScope.systemInform }</FONT>
+              	</marquee>  
+              </div>
               <ul class="nav navbar-nav navbar-right">
-                
+              
                 <c:choose>
                 	<c:when test="${sessionScope.user!=null }">
                 	<li class="">
@@ -249,32 +247,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	
                 	<a href="javascript:;" onclick="linkLogin()" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="<%=path %>/img/touxiang.jpg" alt="默认头像">未登录
-                    
                   </a>
                   </li>
                 	</c:otherwise>
                 </c:choose>
-                  
+
               </ul>
             </nav>
           </div>
         </div>
-        <!-- /top navigation -->
+        <!-- /登陆显示右上角状态 -->
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /page content -->
-
-       
-      </div>
-    </div>
-	<script type="text/javascript">
-	function linkLogin(){
-		 window.location="<%=path%>/login";
-	}
-	</script>
+   <script type="text/javascript">
+   function linkLog(){
+	   window.location="<%=path%>/login";
+   }
+   </script> 
+	
   </body>
 </html>

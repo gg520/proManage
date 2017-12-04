@@ -18,7 +18,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:include page="/menus.jsp"></jsp:include> <br> 
+    <jsp:include page="/menus.jsp"></jsp:include>
+    
+   <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Fixed Footer <small> Just add class <strong>footer_fixed</strong></small></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+            
+            
+    
      <!-- jQuery -->
     <script src="<%=path%>/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -60,6 +75,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- Custom Theme Scripts -->
     <script src="<%=path%>/build/js/custom.min.js"></script>
           
-    <script src="<%=path %>/js/scroll.js" type="text/javascript"></script>
   </body>
 </html>
