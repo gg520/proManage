@@ -1,8 +1,14 @@
 package com.test.promanage.po;
 
+import javax.validation.constraints.Size;
+
+import com.test.promanage.controller.validation.ValidGroup1;
+
 public class TableUser {
+	@Size(min=8,max=32,message="{user.id.length.error}",groups={ValidGroup1.class})
     private String userid;
 
+	@Size(min=8,max=32,message="{user.name.length.error}",groups={ValidGroup1.class})
     private String username;
 
     private String password;

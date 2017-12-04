@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -56,15 +59,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <div class="profile clearfix">
+            
+              <c:choose>
+              	<c:when test="${sessionScope.user!=null }">
+              	<div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="<%=path %>/img/admin/${sessionScope.user.userPhoto }" alt="头像" class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+              	<span>欢迎您,</span>
+             	<h2>${sessionScope.user.userName }</h2>
+             	</div>
+            </div>
+              	</c:when>
+              	<c:otherwise>
+              	<div class="profile clearfix">
               <div class="profile_pic">
                 <img src="<%=path %>/img/touxiang.jpg" alt="头像" class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
-              </div>
+              	<span><a href="${pageContext.request.contextPath }/login">未登录</a></span>
+              	</div>
             </div>
+              	</c:otherwise>
+              </c:choose>
+             
+                
+              
             <!-- /menu profile quick info -->
 
             <br />
@@ -144,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- /菜单下面的按钮 -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" style="width: 100%" data-placement="top" title="退出" href="javascript:void(0)">
+              <a data-toggle="tooltip" style="width: 100%" data-placement="top" title="退出" href="${pageContext.request.contextPath }/quit">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -162,27 +183,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<%=path %>/img/touxiang.jpg" alt="">John Doe
+                
+                <c:choose>
+                	<c:when test="${sessionScope.user!=null }">
+                	<li class="">
+                	
+                	<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="<%=path %>/img/admin/${sessionScope.user.userPhoto }" alt="">${sessionScope.user.userName }
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                   <!--  <li><a href="javascript:;"> Profile</a></li>
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
                       </a>
                     </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="${pageContext.request.contextPath }/login"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                    <li><a href="javascript:;">Help</a></li> -->
+                    <li><a href="${pageContext.request.contextPath }/quit"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
                   </ul>
                 </li>
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
+                    
+                    <!-- 获取消息的数量
+                    
+                    消息有：任务消息，和项目消息
+                     -->
                     <span class="badge bg-green">1</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
@@ -199,11 +229,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       </a>
                     </li>
                     
-                    
-                   
                     <li>
                       <div class="text-center">
-                        <a>
+                     <!--  跳转到消息界面 -->
+                        <a >
                           <strong>查找更多</strong>
                           <i class="fa fa-angle-right"></i>
                         </a>
@@ -211,6 +240,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                   </ul>
                 </li>
+                
+                
+                	
+                	</c:when>
+                	<c:otherwise>
+                	<li class="">
+                	
+                	<a href="javascript:;" onclick="linkLogin()" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="<%=path %>/img/touxiang.jpg" alt="默认头像">未登录
+                    
+                  </a>
+                  </li>
+                	</c:otherwise>
+                </c:choose>
+                  
               </ul>
             </nav>
           </div>
@@ -227,6 +271,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
       </div>
     </div>
-	
+	<script type="text/javascript">
+	function linkLogin(){
+		 window.location="<%=path%>/login";
+	}
+	</script>
   </body>
 </html>
