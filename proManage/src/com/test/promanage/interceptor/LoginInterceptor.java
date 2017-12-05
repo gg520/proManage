@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.test.promanage.pojo.User;
+
 
 
 public class LoginInterceptor implements HandlerInterceptor {
@@ -46,10 +48,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 		//判断session
 		HttpSession session  = request.getSession();
 		//从session中取出用户身份信息
-//		SessionUser user = (SessionUser) session.getAttribute("user");
+		User user = (User) session.getAttribute("user");
 		//执行这里表示用户身份需要认证，跳转登陆页面
-//		if(url.indexOf("admin")>=0){
-//			if(user!= null){
+		if(url.indexOf("admin")>=0){
+			if(user!= null){
 //				//身份存在，放行
 //				ServletContext application=request.getSession().getServletContext();
 //				HashMap<String, HttpSession> applicationMap= (HashMap<String, HttpSession>) application.getAttribute("user");
@@ -78,12 +80,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 //						return false;
 //					}
 //				}
-//				//return true;
-//			}else{
-//				response.getWriter().write("<script>alert('尚未登录！');window.location='"+request.getContextPath()+"/login';</script>");
-//				return false;
-//			}
-//		}
+				return true;
+			}else{
+				response.getWriter().write("<script>alert('尚未登录！');window.location='"+request.getContextPath()+"/login';</script>");
+				return false;
+			}
+		}
 		return true;
 		
 	}

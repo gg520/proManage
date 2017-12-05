@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -56,26 +59,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <tr>
                         <th style="width: 1%">#</th>
                           <th style="width: 20%">项目名</th>
-                          <th>团队成员</th>
+                          <th>创建人</th>
                           <th>项目进度</th>
-                          <th>状态</th>
+                          <th>权限</th>
                           <th style="width: 20%">编辑</th>
                         </tr>
                       </thead>
 
 
                       <tbody id="mytbody">
-                      
+                      <c:forEach items="${projectList }" var="tableProjectCustom" >
                         <tr>
                         <td>#</td>
                           <td>
-                            <a>项目管理系统</a>
+                            <a title="${tableProjectCustom.proIntro }">${tableProjectCustom.proTitle }</a>
                             <br />
-                            <small>创建时间：2017-11-11</small>
+                            <small>创建时间：<fmt:formatDate value="${tableProjectCustom.createDate }" pattern="yyyy-MM-dd"/></small>
                           </td>
                           <td>
                             <ul class="list-inline">
                               <li>
+                                <img src="<%=path %>/img/admin/${tableProjectCustom.createPhoto }" class="avatar" alt="Avatar" title="${tableProjectCustom.createUser }">
+                              </li>
+                              <%-- <li>
                                 <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
                               </li>
                               <li>
@@ -83,45 +89,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               </li>
                               <li>
                                 <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li>
+                              </li> --%>
                             </ul>
                           </td>
-                          <td class="project_progress">
+                         
+                           <td class="project_progress">
                             <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="${tableProjectCustom.rate }"></div>
                             </div>
-                            <small>57% </small>
+                            <small>${tableProjectCustom.proRate } </small>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-success btn-xs">成功</button>
+                          ${tableProjectCustom.jur }
+                           <!--  <button type="button" class="btn btn-success btn-xs">成功</button> -->
                           </td>
                           <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
+                          <c:choose>
+                          	<c:when test="${tableProjectCustom.jurId==2 }">
+                          	 <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
                             <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
                             <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                          	</c:when>
+                          	<c:otherwise>
+                          	<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 任务 </a>
+                          	</c:otherwise>
+                          </c:choose>
+                           
                           </td>
                         </tr>
-                      
-                     <%--  <c:forEach items="${tableProjectCustoms }" var="tableProjectCustom" >
-                       
-                        <tr>
-                       
-                       <td><a  >${tableProjectCustom.projectname }</a></td>
-                         
-                          <td>${tableProjectCustom.createUser }</td>
-                           <td>${tableProjectCustom.createtime }</td>
-                         
-                          <td>${tableProjectCustom.jur }</td>
-                          
-                           <td>${tableProjectCustom.proRate }</td>
-                          
-                          <td>${tableProjectCustom.proIntro }</td>
-                        </tr>
-                        </c:forEach> --%>
-                        
+                      </c:forEach>
                       </tbody>
                     </table>
                   </div>
@@ -139,13 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
   <!-- jQuery -->
 
-  
-    <!-- FastClick -->
-    <script src="<%=path%>//vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="<%=path%>/vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="<%=path%>/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    
 
     <script src="<%=path%>/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -153,7 +144,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- iCheck -->
     <script src="<%=path%>/vendors/iCheck/icheck.min.js"></script>
     
-
+<!-- FastClick -->
+    <script src="<%=path%>/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="<%=path%>/vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="<%=path%>/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    
     <!-- Custom Theme Scripts -->
     <script src="<%=path%>/build/js/custom.min.js"></script>
   </body>

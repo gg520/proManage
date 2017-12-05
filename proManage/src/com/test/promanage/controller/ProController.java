@@ -1,5 +1,6 @@
 package com.test.promanage.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.test.promanage.po.ProUserJur;
 import com.test.promanage.po.TableProject;
 import com.test.promanage.po.TableProjectCustom;
 import com.test.promanage.pojo.User;
 import com.test.promanage.service.ProService;
+import com.test.promanage.utils.UUIDUtils;
 
 
 /**
@@ -46,6 +49,7 @@ public class ProController {
 		User user=(User)request.getSession().getAttribute("user");
 		if(user!=null){
 			List<TableProjectCustom> tableProjectCustoms=proService.selectProInfromByUid(user.getUserId());
+			
 			model.addAttribute("projectList", tableProjectCustoms);
 			return "admin/project/proList";
 		}else{
@@ -68,5 +72,48 @@ public class ProController {
 	public String creatPro()throws Exception{
 		
 		return "admin/project/creatPro";
+	}
+	
+	
+	@RequestMapping(value="creatPro",method={RequestMethod.POST})
+	public String creatPro(String proTitle,String proIntro,HttpServletRequest request)throws Exception{
+		User user=(User)request.getSession().getAttribute("user");
+		if(user!=null){
+			//创建时间
+			TableProject tableProject=new TableProject();
+			tableProject.setCreatetime(new Date());
+			tableProject.setProjectname(proTitle);
+			tableProject.setIntro(proIntro);
+			tableProject.setProjectid(UUIDUtils.getUUID());
+			tableProject.setUserid(user.getUserId());
+			//初始进度
+			tableProject.setRateid(1);
+			
+			ProUserJur proUserJur=new ProUserJur();
+			proUserJur.setProjectId(tableProject.getProjectid());
+			proUserJur.setUserId(user.getUserId());
+			//设置权限等级
+			proUserJur.setJurId(1);
+			int x1=proService.insertTableProject(tableProject);
+			if(x1!=1){
+				//项目发布失败
+				request.getSession().setAttribute("error", "创建项目失败");
+				return "admin/project/creatPro";
+			}else{
+				x1=0;
+			}
+			x1=proService.insertProUserJur(proUserJur);
+			if(x1!=1){
+				//项目发布失败
+				request.getSession().setAttribute("error", "创建项目失败");
+				return "admin/project/creatPro";
+			}else{
+				request.getSession().setAttribute("success", "创建项目成功");
+			}
+			return "admin/project/creatPro";
+		}else{
+			throw new Exception("权限不足");
+		}
+		
 	}
 }

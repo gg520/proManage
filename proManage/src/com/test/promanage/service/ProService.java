@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.test.promanage.po.ProUserJur;
 import com.test.promanage.po.TableProject;
 import com.test.promanage.po.TableProjectCustom;
 
@@ -25,4 +26,8 @@ public interface ProService {
 	 */
 	List<TableProjectCustom> selectProInfromByUid(String uid)throws Exception;
 	
+	
+	int insertTableProject(TableProject tableProject)throws Exception;
+	
+	int insertProUserJur(ProUserJur proUserJur)throws Exception;
 }

@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 
   <body class="nav-md">
-  <script type="text/javascript" src="<%=path%>/vendors/jquery/dist/jquery.js"></script>
+  <%-- <script type="text/javascript" src="<%=path%>/vendors/jquery/dist/jquery.js"></script> --%>
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -91,6 +91,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   </li>
                  </ul>
               </div>
+              <c:choose>
+              	<c:when test="${sessionScope.user!=null }">
               <div class="menu_section">
                 <h3>管理</h3>
                 <ul class="nav side-menu">
@@ -149,7 +151,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   
                 </ul>
               </div>
-
+              </c:when>
+              </c:choose>
             </div>
             <!-- /菜单 -->
 
@@ -260,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
    <script type="text/javascript">
-   function linkLog(){
+   function linkLogin(){
 	   window.location="<%=path%>/login";
    }
    </script> 

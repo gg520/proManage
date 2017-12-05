@@ -1,5 +1,7 @@
 package com.test.promanage.po;
 
+import java.util.Date;
+
 /**
  * 项目的id，名称，关联人id，关联人姓名，创建时间，权限，项目描述，项目进度,创建人姓名
  * @title TableProjectCustom
@@ -17,15 +19,75 @@ public class TableProjectCustom {
 	
 	private String userName;
 	
-	private String createDate;
+	private String userPhoto;
+	
+	private Date createDate;
 	
 	private String jur;
+	
+	private int jurId;
 	
 	private String proIntro;
 	
 	private String proRate;
 	
+	private int proRateId;
+	//进度百分比
+	private int rate;
+	
 	private String createUser;
+	
+	private String createPhoto;
+
+	public int getProRateId() {
+		return proRateId;
+	}
+
+	public void setProRateId(int proRateId) {
+		this.proRateId = proRateId;
+	}
+
+	public int getRate() {
+		//计算百分比
+		
+		return 100/4*proRateId;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
+	public void setJurId(int jurId) {
+		this.jurId = jurId;
+	}
+
+	public int getJurId() {
+		return jurId;
+	}
+
+	public String getCreatePhoto() {
+		return createPhoto;
+	}
+
+	public void setCreatePhoto(String createPhoto) {
+		this.createPhoto = createPhoto;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getUserPhoto() {
+		return userPhoto;
+	}
+
+	public void setUserPhoto(String userPhoto) {
+		this.userPhoto = userPhoto;
+	}
 
 	public String getProIntro() {
 		return proIntro;
@@ -83,14 +145,6 @@ public class TableProjectCustom {
 		this.userId = userId;
 	}
 
-	public String getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
-	}
-
 	public String getJur() {
 		return jur;
 	}
@@ -103,7 +157,9 @@ public class TableProjectCustom {
 	public String toString() {
 		return "TableProjectCustom [proId=" + proId + ", proTitle=" + proTitle
 				+ ", userId=" + userId + ", userName=" + userName
-				+ ", createDate=" + createDate + ", jur=" + jur + "]";
+				+ ", userPhoto=" + userPhoto + ", createDate=" + createDate
+				+ ", jur=" + jur + ", proIntro=" + proIntro + ", proRate="
+				+ proRate + ", createUser=" + createUser + "]";
 	}
 	
 }

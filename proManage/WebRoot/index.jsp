@@ -22,5 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <jsp:include page="/menus.jsp"></jsp:include> <br> 
+    
+    <script type="text/javascript" src="<%=path%>/vendors/jquery/dist/jquery.js"></script>
   </body>
 </html>
