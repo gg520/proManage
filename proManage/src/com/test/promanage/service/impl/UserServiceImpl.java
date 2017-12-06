@@ -41,5 +41,14 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+	@Override
+	public int selectUserById(String uid) throws Exception {
+		TableUserExample example=new TableUserExample();
+		TableUser tableUser=tableUserMapper.selectByPrimaryKey(uid);
+		if(tableUser!=null){
+			return 1;
+		}
+		return 0;
+	}
 
 }

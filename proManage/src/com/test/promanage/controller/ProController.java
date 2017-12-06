@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.promanage.po.ProUserJur;
 import com.test.promanage.po.TableProject;
@@ -129,7 +130,7 @@ public class ProController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value="proRateList",method={RequestMethod.POST})
-	public List<TableRate> proRateList() throws Exception{
+	public @ResponseBody List<TableRate> proRateList() throws Exception{
 		return proService.selectRate();
 		
 	}

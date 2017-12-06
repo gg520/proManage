@@ -267,6 +267,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   window.location="<%=path%>/login";
    }
    </script> 
-	
+	 <script src="<%=path%>/vendors/jquery/dist/jquery.min.js"></script>
   </body>
 </html>
