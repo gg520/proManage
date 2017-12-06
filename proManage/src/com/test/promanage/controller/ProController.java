@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.test.promanage.po.ProUserJur;
 import com.test.promanage.po.TableProject;
 import com.test.promanage.po.TableProjectCustom;
+import com.test.promanage.po.TableRate;
 import com.test.promanage.pojo.User;
 import com.test.promanage.service.ProService;
 import com.test.promanage.utils.UUIDUtils;
@@ -114,6 +115,22 @@ public class ProController {
 		}else{
 			throw new Exception("权限不足");
 		}
+		
+	}
+	
+	/**
+	 * 获取进度
+	 *
+	 * @author guosuzhou
+	 *
+	 * @return
+	 *
+	 *date 2017年12月6日 下午2:32:50
+	 * @throws Exception 
+	 */
+	@RequestMapping(value="proRateList",method={RequestMethod.POST})
+	public List<TableRate> proRateList() throws Exception{
+		return proService.selectRate();
 		
 	}
 }
