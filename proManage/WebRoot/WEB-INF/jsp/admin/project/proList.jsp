@@ -106,12 +106,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <td>
                           <c:choose>
                           	<c:when test="${tableProjectCustom.jurId==2 }">
-                          	 <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                          	 <a href="${pageContext.request.contextPath }/admin/project/projectDetail/${tableProjectCustom.proId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
+                            <a href="${pageContext.request.contextPath }/admin/project/editPro/${tableProjectCustom.proId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
+                          	</c:when>
+                          	<c:when test="${tableProjectCustom.jurId==3 }">
+                          	<a href="${pageContext.request.contextPath }/admin/project/projectDetail/${tableProjectCustom.proId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
+                            <a href="${pageContext.request.contextPath }/admin/project/editPro/${tableProjectCustom.proId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
+                          	<a href="javascript:dePro('${tableProjectCustom.proId}')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                           	</c:when>
                           	<c:otherwise>
-                          	<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
+                          	<a href="${pageContext.request.contextPath }/admin/project/projectDetail/${tableProjectCustom.proId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
                             <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 任务 </a>
                           	</c:otherwise>
                           </c:choose>
@@ -135,9 +139,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
     </div>
   <!-- jQuery -->
-
-    
-
+  <script type="text/javascript">
+  function dePro(proId){
+	  comm={};
+	  comm.projectid=proId;
+	  $.ajax({
+  		type:"POST",
+  		url:"<%=path%>/admin/project/deProject",//获取阶段
+  		contentType:"application/json;charset=utf-8",
+   		data:JSON.stringify(comm),
+  		dataType:"json",
+  		error:function(){
+  			alert("删除失败！");
+  		},
+  		success:function(data){
+  			if(data>0){
+  				alert("删除成功！");
+  				window.location="<%=path%>/admin/project/proList";
+  			}else{
+  				alert("删除失败！");
+  			}
+  		}
+	  });
+  }
+  </script>
     <script src="<%=path%>/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="<%=path%>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>

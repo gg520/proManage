@@ -16,15 +16,21 @@ public interface TableTaskMapper {
 
     int insertSelective(TableTask record);
 
+    List<TableTask> selectByExampleWithBLOBs(TableTaskExample example);
+
     List<TableTask> selectByExample(TableTaskExample example);
 
     TableTask selectByPrimaryKey(Integer taskid);
 
     int updateByExampleSelective(@Param("record") TableTask record, @Param("example") TableTaskExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") TableTask record, @Param("example") TableTaskExample example);
+
     int updateByExample(@Param("record") TableTask record, @Param("example") TableTaskExample example);
 
     int updateByPrimaryKeySelective(TableTask record);
+
+    int updateByPrimaryKeyWithBLOBs(TableTask record);
 
     int updateByPrimaryKey(TableTask record);
 }

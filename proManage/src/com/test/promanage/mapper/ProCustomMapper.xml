@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.promanage.mapper.ProCustomMapper" >
+  <resultMap id="BaseResultMap" type="com.test.promanage.po.ProCustom" >
+    <result column="project_id" property="proId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="username" property="userName" jdbcType="VARCHAR" />
+    <result column="photo" property="userPhoto" jdbcType="VARCHAR" />
+    <result column="userIntro" property="userIntro" jdbcType="VARCHAR" />
+    <result column="jurisdiction_name" property="jurName" jdbcType="VARCHAR" />
+    <result column="filepath" property="filePath" jdbcType="VARCHAR" />
+    <result column="fileCreateTime" property="fileCreateTime" jdbcType="TIMESTAMP" />
+    <result column="ratename" property="rateName" jdbcType="VARCHAR" />
+    <result column="taskname" property="taskName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectProDetailByPid" parameterType="map" resultMap="BaseResultMap">
+	SELECT a.project_id,a.user_id,a.username,a.photo,a.userIntro,a.jurisdiction_name,b.filepath,b.fileCreateTime,b.ratename,b.taskname from(
+	SELECT project_id,user_id,jur_id,
+	table_user.username,table_user.photo,table_user.intro as userIntro,
+	table_jurisdiction.jurisdiction_name
+	from pro_user_jur,table_user,table_jurisdiction where project_id LIKE #{pid,jdbcType=VARCHAR})as a
+	LEFT JOIN (
+	SELECT table_file.filepath,table_file.intro as fileIntro,table_file.createtime as fileCreateTime,table_file.userid,
+	table_task.taskname,
+	table_rate.ratename 
+	from table_file,table_task,table_rate ORDER BY table_file.createtime DESC )as b
+	on a.user_id=b.userid
+	GROUP BY user_id
+  </select>
+ </mapper>

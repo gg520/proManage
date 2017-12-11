@@ -7,6 +7,8 @@ public class TableFile {
 
     private String filepath;
 
+    private String proid;
+
     private String userid;
 
     private Date createtime;
@@ -27,6 +29,14 @@ public class TableFile {
 
     public void setFilepath(String filepath) {
         this.filepath = filepath == null ? null : filepath.trim();
+    }
+
+    public String getProid() {
+        return proid;
+    }
+
+    public void setProid(String proid) {
+        this.proid = proid == null ? null : proid.trim();
     }
 
     public String getUserid() {

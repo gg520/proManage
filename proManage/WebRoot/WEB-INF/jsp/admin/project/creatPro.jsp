@@ -100,69 +100,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        -->
                        
                        <div class="form-group">
-                       <label id="user_rate_task"  class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">编辑进度、任务和人员：
+                       <div class="form-group">
+                       <label class='control-label col-md-3 col-sm-3 col-xs-12'> </label>
+                       <div align="left"><font color='#FF0000'>根据账号查询</font></div>
+                       </div>
+                       <label id="user_rate_task"  class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">项目经理：
                        </label>
                       <div class="col-md-6 col-sm-6 col-xs-12" >
-                       <div class="form-group">
+                       <!-- <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">进度： </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                         <select class="form-control" id="proRate" name="proRate">
                         
                         </select>
                         </div>
-                       </div>
-                     
-                       <!-- 进度选择后，需要安排任务，以及添加项目成员 
-                       2. 添加成员
-                       3. 添加任务
-                       -->
-                       <!--  <div class="form-group">
-                       		<label class="control-label col-md-3 col-sm-3 col-xs-12">任务： </label>
-                        	<div class="col-md-6 col-sm-6 col-xs-12">
-	                       		<div class="input-group">
-	                   			 <input type="text" class="form-control" id="taskTitile" required="required">
-	                   			 <span class="input-group-addon" >任务标题</span>
-	                			</div>
-                        	</div>
-                        	<font color="#FF0000" hidden="hidden" id="taskTitileError">标题内容不能为空</font>
-                          </div>
-                        <div class="form-group">
-                        	<label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-	                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                       		<div class="input-group">
-	                       		<textarea type="text" class="form-control" required="required" id="taskContext"></textarea>
-								<span class="input-group-addon" >任务内容</span>
-	                   			 
-	                			</div>
-	                        </div>
-                        </div>
-                      
-                        <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" align="center">
-                          <button type="button" class="btn btn-warning" onclick="addTask()">添加任务</button>
-                        </div>
-                      </div> 
-                       <div class="form-group">
-                       <div align='center'><font color='#FF0000'>根据账号查询</font></div>
-                       <label class="control-label col-md-3 col-sm-3 col-xs-12">人员： </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                       		<div class="input-group">
-                   			 <input type="text" class="form-control" id="bodyByOne">
-                   			 <span class="input-group-btn">
-                       			 <button class="btn btn-default" type="button" onclick="addBody()">Go!</button>
-                    		 </span>
-                			</div>
-                        </div>
-                        </div> -->
+                       </div> -->
                         <!-- 保存任务 -->
-                        <input type="hidden" id="teskList" name="teskList">
-                        
+                       <!--  <input type="hidden" id="doc_teskList" name="doc_teskList">
+                        <input type="hidden" id="code_teskList" name="code_teskList"> -->
                         <!-- 保存用户 -->
                         <input type="hidden" id="userList" name="userList">
-                        
                        <div id="task" >
                         
                        </div>
+                       <!-- 人员添加 -->
+						<!-- <div class='form-group'> -->
+			             
+				           <!-- <label class='control-label col-md-3 col-sm-3 col-xs-12'>项目经理： </label> -->
+				            <div class='col-md-6 col-sm-6 col-xs-12'>
+				           		<div class='input-group'>
+				       			 <input type='text' class='form-control' id='bodyByOne'>
+				       			 <span class='input-group-btn'>
+				           			 <button class='btn btn-default' type='button' onclick='addBody()'>添加</button>
+				        		 </span>
+				    			</div><!-- /input-group -->
+				            </div>
+				            <font color='#FF0000' hidden='hidden' id='bodyError'>异常原因</font>
+			            <!-- </div>  -->
+                       
                       </div>
                        
                        </div>
@@ -194,122 +169,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
     <script type="text/javascript">
-    //删除任务
-    function deTask(id){
-    	$("#"+id).hide();
-    }
     
     //删除用户
-    
     function deBody(bodyId){
-    	$("#"+bodyId).hide();
-    }
-    //进度选择事件
-    $("select#proRate").change(function(){
-    	
-    	var proRate=$(this).val();
-    	if(proRate==1||proRate==4){
-    		//刚创建阶段或者是已经完成
-    		//不添加人员和任务
-    		$("#task").html("");
-    		if(proRate==4){
-    			alert("设置项目未结束，普通职员将不可以对项目尽心任何的操作！");
-    		}
+    	var userList=$("#userList").val();
+    	var body=$("#"+bodyId).text();
+    	body=body.replace("用户：","").trim();
+    	if(userList.indexOf(body+";")>=0){
+    		userList=userList.replace(body+";","").trim();
+    		$("#userList").val(userList);
+    		$("#"+bodyId).hide();
     	}else{
-            var row = " <div class='form-group'>"+
-       		"<label class='control-label col-md-3 col-sm-3 col-xs-12'>任务： </label>"+
-        	"<div class='col-md-6 col-sm-6 col-xs-12'>"+
-           	"	<div class='input-group'>"+
-       		"	 <input type='text' class='form-control' id='taskTitile' required='required'>"+
-       		"	 <span class='input-group-addon' >任务标题</span>"+
-    		"	</div>"+
-        	"</div>"+
-        	"<font color='#FF0000' hidden='hidden' id='taskTitileError'>标题不能为空</font>"+
-          "</div>"+
-        "<div class='form-group'>"+
-        "	<label class='control-label col-md-3 col-sm-3 col-xs-12'> </label>"+
-         "   <div class='col-md-6 col-sm-6 col-xs-12'>"+
-          " 		<div class='input-group'>"+
-           "		<textarea type='text' class='form-control' required='required' id='taskContext'></textarea>"+
-			"	<span class='input-group-addon' >任务内容</span>"+
-    		"	</div>"+
-            "</div>"+
-            "<font color='#FF0000' hidden='hidden' id='taskContextError'>内容不能为空</font>"+
-        "</div>"+
-        "<div class='form-group'>"+
-        "<div class='col-md-6 col-sm-6 col-xs-12 col-md-offset-3' align='center'>"+
-        "  <button type='button' class='btn btn-warning' onclick='addTask()'>添加任务</button>"+
-        "</div>"+
-      "</div> "+<!-- /input-group -->
-            "</div>"+
-            "</div>"+
-            "<div class='form-group'>"+
-            "<div align='center'><font color='#FF0000'>根据账号查询</font></div>"+
-           "<label class='control-label col-md-3 col-sm-3 col-xs-12'>人员： </label>"+
-            "<div class='col-md-6 col-sm-6 col-xs-12'>"+
-           	"	<div class='input-group'>"+
-       		"	 <input type='text' class='form-control' id='bodyByOne'>"+
-       		"	 <span class='input-group-btn'>"+
-           	"		 <button class='btn btn-default' type='button' onclick='addBody()'>添加</button>"+
-        	"	 </span>"+
-    		"	</div>"+<!-- /input-group -->
-            "</div>"+
-            "<font color='#FF0000' hidden='hidden' id='bodyError'>异常原因</font>"+
-            "</div>";
-            
-            $("#task").html(row);
+    		alert("删除失败");
     	}
-    });
+    	
+    }
     
-   //添加任务
-   
-   function addTask(){
-	   var taskTitle=$("#taskTitile").val();
-	   var taskContext=$("#taskContext").val();
-	   taskTitle=taskTitle.trim();
-	   taskContext=taskContext.trim();
-	   $("#taskTitileError").hide();
-	   $("#taskContextError").hide();
-	   if(taskTitle==null||taskTitle.length<=0){
-		   $("#taskTitileError").show();
-		   if(taskContext==null||taskContext.length<=0){
-			   $("#taskContextError").show();
-			   return false;
-		   }
-		   return false;
-	   }
-	   if(taskContext==null||taskContext.length<=0){
-		   $("#taskContextError").show();
-		   return false;
-	   }
-	   task_num_id++;
-	   //任务统计显示
-	   
-	   //begin
-	   var teskList=$("#teskList").val();
-	   if(teskList.indexOf("@"+taskTitle)>=0){
-		   $("#taskTitileError").val("该任务已添加");
-		   $("#taskTitileError").show();
-		   return false;
-	   }
-	   if(teskList!=null&&teskList.length>0){
-		   teskList=teskList+"@"+taskTitle+"$$"+taskContext+"%;%";
-	   }else{
-		   teskList="@"+taskTitle+"$$"+taskContext+"%;%";
-	   }
-	   //end
-	   
-	   var row="<span class='btn btn-default' data-toggle='tooltip'  title='"+taskContext+"' id='"+task_num_id+"'>"+
-	   "<i class='fa fa-close' onclick='deTask("+task_num_id+")'  title='删除'></i> 任务："+taskTitle+"</span>";
-	   $("#task_user").append(row);
-	   $("#taskTitile").val("");
-	   $("#taskContext").val("");
-   }
-   
+   //添加用户
    function addBody(){
 	   var body=$("#bodyByOne").val();
 	   body=body.trim();
-	   
+	   var userOne="${sessionScope.user.userId}";
+	   /* alert(userOne); */
+	   if(body==userOne){
+		   $("#bodyError").text("用户已存在");
+		   $("#bodyError").show();
+		   return false;
+	   }
 	   $("#bodyError").hide();
 	   if(body!=null&&body.length>0){
 		   var comm={};
@@ -331,8 +217,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        				
        				//bengin
        				var userList=$("#userList").val();
-        			if(userList.indexOf(body+";")>=0){
-        				$("#bodyError").text("已添加过改用户");
+        			if(userList!=null&&userList.indexOf(body+";")>=0){
+        				$("#bodyError").text("用户已存在");
         				$("#bodyError").show();
         				return false;
         			}
