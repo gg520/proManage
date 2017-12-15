@@ -372,7 +372,6 @@ public class ProController {
 		//查找项目基础信息
 		model.addAttribute("tableProject", proService.selectTableProjectByPid(pid));
 		//查找项目人员信息,包括最近上传的文件
-		model.addAttribute("userMassages", proService.selectUserMassageByPid(pid));
 		return "admin/project/projectDetail";
 		
 	}

@@ -71,11 +71,12 @@ public class LoginController {
 				return "index";
 			}else{
 				//登陆失败
-				request.getSession().setAttribute("loginError", "账号或密码错误");
+				request.getSession().setAttribute("loginMassage", "账号或密码错误");
 			}
 		}else{
 			//管理员登录
 			request.getSession().setAttribute("user", new User("admin",tableAdmin.getAdminId(),tableAdmin.getAdminName(),"touxing.jpg"));
+			return "index";
 		}
 		return "login";
 		

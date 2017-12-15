@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.promanage.mapper.ProCustomMapper;
+
+
+
 import com.test.promanage.mapper.ProUserJurMapper;
 import com.test.promanage.mapper.TableProCustomMapper;
 import com.test.promanage.mapper.TableProjectMapper;
 import com.test.promanage.mapper.TableRateMapper;
 import com.test.promanage.mapper.TableVersionMapper;
-import com.test.promanage.po.ProCustom;
 import com.test.promanage.po.ProUserJur;
 import com.test.promanage.po.ProUserJurExample;
 import com.test.promanage.po.TableProject;
 import com.test.promanage.po.TableProjectCustom;
-import com.test.promanage.po.TableProjectExample;
 import com.test.promanage.po.TableRate;
 import com.test.promanage.po.TableVersion;
 import com.test.promanage.po.TableVersionExample;
@@ -35,8 +35,8 @@ public class ProServiceImpl implements ProService {
 	private TableRateMapper tableRateMapper;
 	@Autowired
 	private TableVersionMapper tableVersionMapper;
-	@Autowired
-	private ProCustomMapper proCustomMapper;
+//	@Autowired
+//	private ProCustomMapper proCustomMapper;
 	
 	@Override
 	public List<TableProjectCustom> selectProInfromByUid(String uid)
@@ -107,9 +107,5 @@ public class ProServiceImpl implements ProService {
 		return null;
 	}
 
-	@Override
-	public List<ProCustom> selectUserMassageByPid(String pid) throws Exception {
-		return proCustomMapper.selectProDetailByPid(pid);
-	}
 
 }

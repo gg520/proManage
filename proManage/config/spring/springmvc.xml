@@ -26,20 +26,13 @@
 	 -->
 	 <mvc:resources location="/js/" mapping="/js/**"/>
 	 <mvc:resources location="/img/" mapping="/img/**"/>
-	 <mvc:resources location="/vendors/" mapping="/vendors/**"/>
-	 <mvc:resources location="/build/" mapping="/build/**"/>
 	 <mvc:resources location="/css/" mapping="/css/**"/>
-	 <mvc:resources location="/js/" mapping="/js/**"/>
-	 <mvc:resources location="/temp/" mapping="/temp/**"/>
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/js/**"/>
 			<mvc:exclude-mapping path="/css/**"/>
 			<mvc:exclude-mapping path="/img/**"/>
-			<mvc:exclude-mapping path="/vendors/**"/>
-			<mvc:exclude-mapping path="/build/**"/>
-			<mvc:exclude-mapping path="/js/**"/>
 			<bean class="com.test.promanage.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

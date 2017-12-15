@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>项目列表</title>
-    
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -28,116 +28,85 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
    <jsp:include page="/menus.jsp"></jsp:include> <br>
        
+        <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Hello, world!</h1>
+            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+          </div><!--/row-->
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="javascript:void(0)" class="list-group-item active">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+            <a href="javascript:void(0)" class="list-group-item">Link</a>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+
+      <hr>
+
+      <jsp:include page="/MyFooter.jsp"></jsp:include>
+
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="<%=path %>/js/vendor/jquery.min.js"></script>
+    <script src="<%=path %>/js/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="<%=path %>/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="<%=path %>/js/back/offcanvas.js"></script>
        
        
-       <!-- page content -->
-        <div class="right_col" role="main">
-          <div style="height:40px"></div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 class="panel-title">项目管理</h2>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <di v class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>项目列表 <small></small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                     <a href="${pageContext.request.contextPath }/admin/project/creatPro"><button type="button" class="btn btn btn-danger" >创建项目</button></a>&nbsp;&nbsp;&nbsp;
-                     
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                   
-                    <table class="table table-striped projects">
-                      <thead>
-                        <tr>
-                        <th style="width: 1%">#</th>
-                          <th style="width: 20%">项目名</th>
-                          <th>创建人</th>
-                          <th>项目进度</th>
-                          <th>权限</th>
-                          <th style="width: 20%">编辑</th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody id="mytbody">
-                      <c:forEach items="${projectList }" var="tableProjectCustom" >
-                        <tr>
-                        <td>#</td>
-                          <td>
-                            <a title="${tableProjectCustom.proIntro }">${tableProjectCustom.proTitle }</a>
-                            <br />
-                            <small>创建时间：<fmt:formatDate value="${tableProjectCustom.createDate }" pattern="yyyy-MM-dd"/></small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="<%=path %>/img/admin/${tableProjectCustom.createPhoto }" class="avatar" alt="Avatar" title="${tableProjectCustom.createUser }">
-                              </li>
-                              <%-- <li>
-                                <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li> --%>
-                            </ul>
-                          </td>
-                         
-                           <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="${tableProjectCustom.rate }"></div>
-                            </div>
-                            <small>${tableProjectCustom.proRate } </small>
-                          </td>
-                          <td>
-                          ${tableProjectCustom.jur }
-                           <!--  <button type="button" class="btn btn-success btn-xs">成功</button> -->
-                          </td>
-                          <td>
-                          <c:choose>
-                          	<c:when test="${tableProjectCustom.jurId==2 }">
-                          	 <a href="${pageContext.request.contextPath }/admin/project/projectDetail/${tableProjectCustom.proId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
-                            <a href="${pageContext.request.contextPath }/admin/project/editPro/${tableProjectCustom.proId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
-                          	</c:when>
-                          	<c:when test="${tableProjectCustom.jurId==3 }">
-                          	<a href="${pageContext.request.contextPath }/admin/project/projectDetail/${tableProjectCustom.proId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
-                            <a href="${pageContext.request.contextPath }/admin/project/editPro/${tableProjectCustom.proId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
-                          	<a href="javascript:dePro('${tableProjectCustom.proId}')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
-                          	</c:when>
-                          	<c:otherwise>
-                          	<a href="${pageContext.request.contextPath }/admin/project/projectDetail/${tableProjectCustom.proId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 任务 </a>
-                          	</c:otherwise>
-                          </c:choose>
-                           
-                          </td>
-                        </tr>
-                      </c:forEach>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          
-        
-        <!-- /page content -->
-
-        <!-- footer content -->
-         <jsp:include page="/MyFooter.jsp"></jsp:include>
-        <!-- /footer content -->
-      </div>
-    </div>
   <!-- jQuery -->
   <script type="text/javascript">
   function dePro(proId){
@@ -163,20 +132,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  });
   }
   </script>
-    <script src="<%=path%>/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="<%=path%>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- iCheck -->
-    <script src="<%=path%>/vendors/iCheck/icheck.min.js"></script>
     
-<!-- FastClick -->
-    <script src="<%=path%>/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="<%=path%>/vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="<%=path%>/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    
-    <!-- Custom Theme Scripts -->
-    <script src="<%=path%>/build/js/custom.min.js"></script>
   </body>
 </html>

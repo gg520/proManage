@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>MyFooter</title>
+    <title>下边角r</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -24,9 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
    <footer>
-          <div class="clearfix">
-			Copyright 中原工学院2017年实训团队 </font>
-			</div>
-        </footer>
+                <p>&copy; 2017 中原工学院实训团队 &middot; <a href="javascript:void(0)">隐私</a> &middot; <a href="javascript:void(0)">条款</a></p>
+            </footer>
   </body>
 <ml>

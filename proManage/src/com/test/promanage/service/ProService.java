@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.test.promanage.po.ProCustom;
 import com.test.promanage.po.ProUserJur;
 import com.test.promanage.po.TableProject;
 import com.test.promanage.po.TableProjectCustom;
@@ -149,17 +148,4 @@ public interface ProService {
 	 */
 	TableVersion selectTableVersionByPid(String pid) throws Exception;
 	
-	/**
-	 * 获取项目中参与人员的详细信息
-	 * 
-	 * 
-	 * @title ProService.java
-	 * @author guosuzhou
-	 * @param pid
-	 * @return
-	 * @throws Exception
-	 * 
-	 * @date 2017年12月11日
-	 */
-	List<ProCustom> selectUserMassageByPid(String pid) throws Exception;
 }
