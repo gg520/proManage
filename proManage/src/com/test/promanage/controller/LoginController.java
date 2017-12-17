@@ -68,7 +68,7 @@ public class LoginController {
 			if(tableUser!=null){
 				//普通用户 登陆成功
 				request.getSession().setAttribute("user", new User("user",tableUser.getUserid(),tableUser.getUsername(),tableUser.getPhoto()));
-				return "index";
+				return "admin/project/proList";
 			}else{
 				//登陆失败
 				request.getSession().setAttribute("loginMassage", "账号或密码错误");

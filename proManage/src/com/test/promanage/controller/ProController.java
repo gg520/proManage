@@ -56,19 +56,21 @@ public class ProController {
 	 *
 	 *date 2017年12月4日 下午9:56:40
 	 */
-	@RequestMapping("proList")
-	public String proList(HttpServletRequest request,Model model)throws Exception{
+	@RequestMapping(value="proList",method={RequestMethod.GET})
+	public String proList()throws Exception{
+		return "admin/project/proList";
+	}
+	
+	@RequestMapping(value="proList",method={RequestMethod.POST})
+	public @ResponseBody List<TableProjectCustom> proList(HttpServletRequest request)throws Exception{
 		User user=(User)request.getSession().getAttribute("user");
 		if(user!=null){
 			List<TableProjectCustom> tableProjectCustoms=proService.selectProInfromByUid(user.getUserId());
-			model.addAttribute("projectList", tableProjectCustoms);
-			return "admin/project/proList";
+			return tableProjectCustoms;
 		}else{
 			throw new Exception("未登录");
 		}
-		
 	}
-	
 	/**
 	 * 创建项目 跳转界面
 	 *

@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	 <link rel="icon" href="<%=path %>/img/favicon.ico"> 
+	 <link rel="icon" href="<%=path %>/img/system/favicon.ico"> 
         <title>登陆</title>
 
         <!-- CSS -->
@@ -41,12 +41,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <img src="<%=path %>/img/favicon.jpg" class="navbar-brand" width="80" height="70">
+              <img src="<%=path %>/img/system/favicon.jpg" class="navbar-brand" width="80" height="70">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="#first"><a href="index.html">首页</a></li>
-                <li><a href="#about">关于</a></li>
+                <li><a href="${pageContext.request.contextPath }/about">关于</a></li>
                 <li><a href="#contact">联系人</a></li>
                 <li class="active"><a href="javascript:void(0)">登陆</a></li>
               </ul>

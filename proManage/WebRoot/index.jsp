@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <span class="icon-bar"></span>
               </button>
 
-              <img src="../../assets/img/favicon.jpg" class="navbar-brand" width="65" height="65">
+              <img src="<%=path %>/img/system/favicon.jpg" class="navbar-brand" width="65" height="65">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">

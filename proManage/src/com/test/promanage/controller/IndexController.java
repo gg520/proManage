@@ -10,4 +10,9 @@ public class IndexController {
 	public String index(){
 		return "index";
 	}
+	
+	@RequestMapping("about")
+	public String about(){
+		return "view/about";
+	}
 }

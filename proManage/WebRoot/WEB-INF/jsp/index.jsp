@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="icon" href="<%=path %>/img/favicon.ico"> 
+	<link rel="icon" href="<%=path %>/img/system/favicon.ico"> 
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -42,18 +42,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar">/span>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
 
-              <img src="<%=path %>/img/favicon.jpg" class="navbar-brand" width="65" height="65">
+              <img src="<%=path %>/img/system/favicon.jpg" class="navbar-brand" width="65" height="65">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath }/index">首页</a></li>
-                <li><a href="javascript:void(0)">关于</a></li>
+                <li><a href="${pageContext.request.contextPath }/about"">关于</a></li>
                 <li><a href="javascript:void(0)">联系人</a></li>
                 <c:choose>
               	<c:when test="${sessionScope.user!=null }">
