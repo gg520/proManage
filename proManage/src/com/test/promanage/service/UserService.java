@@ -30,4 +30,6 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	TableUser selectUser(String id,String password)throws Exception;
+	
+	int selectUserById(String uid)throws Exception;
 }

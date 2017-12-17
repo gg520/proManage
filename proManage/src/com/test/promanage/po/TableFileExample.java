@@ -235,6 +235,76 @@ public class TableFileExample {
             return (Criteria) this;
         }
 
+        public Criteria andProidIsNull() {
+            addCriterion("proid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidIsNotNull() {
+            addCriterion("proid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidEqualTo(String value) {
+            addCriterion("proid =", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidNotEqualTo(String value) {
+            addCriterion("proid <>", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidGreaterThan(String value) {
+            addCriterion("proid >", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidGreaterThanOrEqualTo(String value) {
+            addCriterion("proid >=", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidLessThan(String value) {
+            addCriterion("proid <", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidLessThanOrEqualTo(String value) {
+            addCriterion("proid <=", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidLike(String value) {
+            addCriterion("proid like", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidNotLike(String value) {
+            addCriterion("proid not like", value, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidIn(List<String> values) {
+            addCriterion("proid in", values, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidNotIn(List<String> values) {
+            addCriterion("proid not in", values, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidBetween(String value1, String value2) {
+            addCriterion("proid between", value1, value2, "proid");
+            return (Criteria) this;
+        }
+
+        public Criteria andProidNotBetween(String value1, String value2) {
+            addCriterion("proid not between", value1, value2, "proid");
+            return (Criteria) this;
+        }
+
         public Criteria andUseridIsNull() {
             addCriterion("userid is null");
             return (Criteria) this;

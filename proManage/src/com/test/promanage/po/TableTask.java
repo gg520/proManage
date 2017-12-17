@@ -11,6 +11,8 @@ public class TableTask {
 
     private String userId;
 
+    private String intro;
+
     public Integer getTaskid() {
         return taskid;
     }
@@ -49,5 +51,13 @@ public class TableTask {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro == null ? null : intro.trim();
     }
 }

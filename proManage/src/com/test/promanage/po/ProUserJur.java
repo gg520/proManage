@@ -9,6 +9,8 @@ public class ProUserJur {
 
     private Integer jurId;
 
+    private Integer flag;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class ProUserJur {
 
     public void setJurId(Integer jurId) {
         this.jurId = jurId;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 }

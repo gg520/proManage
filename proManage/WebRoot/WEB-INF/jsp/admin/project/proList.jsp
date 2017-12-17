@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>项目列表</title>
-    
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -22,136 +22,170 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+<style>
+/* Custom Styles */
+    ul.nav-tabs{
+        width: 140px;
+        margin-top: 60px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    }
+    ul.nav-tabs li{
+        margin: 0;
+        border-top: 1px solid #ddd;
+    }
+    ul.nav-tabs li:first-child{
+        border-top: none;
+    }
+    ul.nav-tabs li a{
+        margin: 0;
+        padding: 8px 16px;
+        border-radius: 0;
+    }
+    ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+        color: #fff;
+        background: #0088cc;
+        border: 1px solid #0088cc;
+    }
+    ul.nav-tabs li:first-child a{
+        border-radius: 4px 4px 0 0;
+    }
+    ul.nav-tabs li:last-child a{
+        border-radius: 0 0 4px 4px;
+    }
+    ul.nav-tabs.affix{
+        top: 30px; /* Set the top position of pinned element */
+    }
+</style>
   </head>
   
-  <body>
+  <body data-spy="scroll" data-target="#myScrollspy">
    <jsp:include page="/menus.jsp"></jsp:include> <br>
+       <script type="text/javascript">
+       $(document).ready(function(){
+    	  //获取项目列表，
+    	  
+			 $.ajax({
+				type:"POST",
+				url:"<%=path%>/admin/project/proList",
+				contentType:"application/json;charset=utf-8",
+				dataType:"json",
+				beforeSend:function(XMLHttpRequest){
+					//设置加载悬浮框
+					
+				},
+				error:function(){
+					alert("加载失败，请刷新重试！");
+				},
+				success:function(data){
+					$(data).each(function(index,item){
+						
+						var row="<div class='panel panel-warning col-xs-6 col-lg-4'>"+
+							"<div class='panel-heading'>"+
+							"<h3 class='panel-title'><a href='Javascript:void(0)'>"+item.proTitle+"</a><small>java</small></h3>"+
+							"</div>"+
+							"<div class='panel-body'>";
+							if(item.proIntro.length<=14){
+								row=row+"<p title='"+item.proIntro+"'>"+item.proIntro+"<br><br></p></div></div>";
+							}else{
+								row=row+"<p title='"+item.proIntro+"'>"+item.proIntro.substring(0,27)+"...</p></div></div>";
+							} 
+						$("#proList").append(row); 
+					});
+				}
+			});
+       });
        
-       
-       
-       <!-- page content -->
-        <div class="right_col" role="main">
-          <div style="height:40px"></div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 class="panel-title">项目管理</h2>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <di v class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>项目列表 <small></small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                     <a href="${pageContext.request.contextPath }/admin/project/creatPro"><button type="button" class="btn btn btn-danger" >创建项目</button></a>&nbsp;&nbsp;&nbsp;
-                     
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                   
-                    <table class="table table-striped projects">
-                      <thead>
-                        <tr>
-                        <th style="width: 1%">#</th>
-                          <th style="width: 20%">项目名</th>
-                          <th>创建人</th>
-                          <th>项目进度</th>
-                          <th>权限</th>
-                          <th style="width: 20%">编辑</th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody id="mytbody">
-                      <c:forEach items="${projectList }" var="tableProjectCustom" >
-                        <tr>
-                        <td>#</td>
-                          <td>
-                            <a title="${tableProjectCustom.proIntro }">${tableProjectCustom.proTitle }</a>
-                            <br />
-                            <small>创建时间：<fmt:formatDate value="${tableProjectCustom.createDate }" pattern="yyyy-MM-dd"/></small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="<%=path %>/img/admin/${tableProjectCustom.createPhoto }" class="avatar" alt="Avatar" title="${tableProjectCustom.createUser }">
-                              </li>
-                              <%-- <li>
-                                <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="<%=path %>/img/touxiang.jpg" class="avatar" alt="Avatar">
-                              </li> --%>
-                            </ul>
-                          </td>
-                         
-                           <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="${tableProjectCustom.rate }"></div>
-                            </div>
-                            <small>${tableProjectCustom.proRate } </small>
-                          </td>
-                          <td>
-                          ${tableProjectCustom.jur }
-                           <!--  <button type="button" class="btn btn-success btn-xs">成功</button> -->
-                          </td>
-                          <td>
-                          <c:choose>
-                          	<c:when test="${tableProjectCustom.jurId==2 }">
-                          	 <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
-                          	</c:when>
-                          	<c:otherwise>
-                          	<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 视图 </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 任务 </a>
-                          	</c:otherwise>
-                          </c:choose>
-                           
-                          </td>
-                        </tr>
-                      </c:forEach>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          
-        
-        <!-- /page content -->
-
-        <!-- footer content -->
-         <jsp:include page="/MyFooter.jsp"></jsp:include>
-        <!-- /footer content -->
-      </div>
+       </script>
+       <div class="container">
+   <div class="jumbotron">
+        <h1>Hello, world!</h1>
+            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
     </div>
-  <!-- jQuery -->
+    <div class="row">
+        <div class="col-xs-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+                <li class="active"><a href="<%=path %>/admin/project/proList#section-1">项目列表</a></li>
+                <li><a href="<%=path %>/admin/project/proList#section-2">最近活动</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-9">
+	        <div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 id="section-1" class="panel-title">项目列表</h3>
+				</div>
+				<div class="panel-body">
+					<div id="proList">
+					
+						<!--<div class="panel panel-warning col-xs-6 col-lg-4">
+							<div class="panel-heading">
+								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
+							</div>
+							<div class="panel-body">
+								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							</div>
+						</div>
+						<div class="panel panel-warning col-xs-6 col-lg-4">
+							<div class="panel-heading">
+								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
+							</div>
+							<div class="panel-body">
+								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							</div>
+						</div>
+						<div class="panel panel-warning col-xs-6 col-lg-4">
+							<div class="panel-heading">
+								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
+							</div>
+							<div class="panel-body">
+								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							</div>
+						</div>
+						<div class="panel panel-warning col-xs-6 col-lg-4">
+							<div class="panel-heading">
+								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
+							</div>
+							<div class="panel-body">
+								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							</div>
+						</div>
+						<div class="panel panel-warning col-xs-6 col-lg-4">
+							<div class="panel-heading">
+								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
+							</div>
+							<div class="panel-body">
+								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							</div>
+						</div> -->
+            		</div>
+				</div>
+			</div>
+            <div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 id="section-2" class="panel-title">最近活动</h3>
+				</div>
+				<div class="panel-body">
+					<p>主要描述：创建的项目，提交的数据、添加的团队（都是根据时间排序）</p>
+		            <p>Vestibulum consectetur scelerisque lacus, ac fermentum lorem convallis sed. Nam odio tortor, dictum quis malesuada at, pellentesque vitae orci. Vivamus elementum, felis eu auctor lobortis, diam velit egestas lacus, quis fermentum metus ante quis urna. Sed at facilisis libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum bibendum blandit dolor. Nunc orci dolor, molestie nec nibh in, hendrerit tincidunt ante. Vivamus sem augue, hendrerit non sapien in, mollis ornare augue.</p>
+		            <hr>
+				</div>
+			</div>
+            
+        </div>
+    </div>
+	<div align="right">
+		<jsp:include page="/MyFooter.jsp"></jsp:include>
+	</div>
+    </div><!--/.container-->
 
-    
-
-    <script src="<%=path%>/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="<%=path%>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- iCheck -->
-    <script src="<%=path%>/vendors/iCheck/icheck.min.js"></script>
-    
-<!-- FastClick -->
-    <script src="<%=path%>/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="<%=path%>/vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="<%=path%>/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    
-    <!-- Custom Theme Scripts -->
-    <script src="<%=path%>/build/js/custom.min.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%-- <script src="<%=path %>/js/vendor/jquery.min.js"></script> --%>
+    <script src="<%=path %>/js/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="<%=path %>/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="<%=path %>/js/back/offcanvas.js"></script>
   </body>
 </html>

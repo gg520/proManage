@@ -8,6 +8,9 @@
     <result column="rate_id" property="rateId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.test.promanage.po.TableTask" extends="BaseResultMap" >
+    <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -69,6 +72,25 @@
   <sql id="Base_Column_List" >
     taskid, taskname, project_id, rate_id, user_id
   </sql>
+  <sql id="Blob_Column_List" >
+    intro
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.test.promanage.po.TableTaskExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from table_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.test.promanage.po.TableTaskExample" >
     select
     <if test="distinct" >
@@ -83,9 +105,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from table_task
     where taskid = #{taskid,jdbcType=INTEGER}
   </select>
@@ -101,9 +125,11 @@
   </delete>
   <insert id="insert" parameterType="com.test.promanage.po.TableTask" >
     insert into table_task (taskid, taskname, project_id, 
-      rate_id, user_id)
+      rate_id, user_id, intro
+      )
     values (#{taskid,jdbcType=INTEGER}, #{taskname,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
-      #{rateId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR})
+      #{rateId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{intro,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.test.promanage.po.TableTask" >
     insert into table_task
@@ -123,6 +149,9 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="intro != null" >
+        intro,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="taskid != null" >
@@ -139,6 +168,9 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,7 +198,22 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
+      <if test="record.intro != null" >
+        intro = #{record.intro,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update table_task
+    set taskid = #{record.taskid,jdbcType=INTEGER},
+      taskname = #{record.taskname,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      rate_id = #{record.rateId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      intro = #{record.intro,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,7 +244,19 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
       </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.test.promanage.po.TableTask" >
+    update table_task
+    set taskname = #{taskname,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      rate_id = #{rateId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=LONGVARCHAR}
     where taskid = #{taskid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.test.promanage.po.TableTask" >
