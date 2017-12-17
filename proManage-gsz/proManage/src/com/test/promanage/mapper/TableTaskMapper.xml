@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.promanage.mapper.TableTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.test.promanage.po.TableTask" >
+    <id column="taskid" property="taskid" jdbcType="INTEGER" />
+    <result column="taskname" property="taskname" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="rate_id" property="rateId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.test.promanage.po.TableTask" extends="BaseResultMap" >
+    <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    taskid, taskname, project_id, rate_id, user_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    intro
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.test.promanage.po.TableTaskExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from table_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.test.promanage.po.TableTaskExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from table_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from table_task
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from table_task
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.test.promanage.po.TableTaskExample" >
+    delete from table_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.test.promanage.po.TableTask" >
+    insert into table_task (taskid, taskname, project_id, 
+      rate_id, user_id, intro
+      )
+    values (#{taskid,jdbcType=INTEGER}, #{taskname,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{rateId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{intro,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.promanage.po.TableTask" >
+    insert into table_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        taskid,
+      </if>
+      <if test="taskname != null" >
+        taskname,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="rateId != null" >
+        rate_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="taskname != null" >
+        #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null" >
+        #{rateId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.test.promanage.po.TableTaskExample" resultType="java.lang.Integer" >
+    select count(*) from table_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update table_task
+    <set >
+      <if test="record.taskid != null" >
+        taskid = #{record.taskid,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskname != null" >
+        taskname = #{record.taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rateId != null" >
+        rate_id = #{record.rateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intro != null" >
+        intro = #{record.intro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update table_task
+    set taskid = #{record.taskid,jdbcType=INTEGER},
+      taskname = #{record.taskname,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      rate_id = #{record.rateId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      intro = #{record.intro,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update table_task
+    set taskid = #{record.taskid,jdbcType=INTEGER},
+      taskname = #{record.taskname,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      rate_id = #{record.rateId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.promanage.po.TableTask" >
+    update table_task
+    <set >
+      <if test="taskname != null" >
+        taskname = #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null" >
+        rate_id = #{rateId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.test.promanage.po.TableTask" >
+    update table_task
+    set taskname = #{taskname,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      rate_id = #{rateId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=LONGVARCHAR}
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.promanage.po.TableTask" >
+    update table_task
+    set taskname = #{taskname,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      rate_id = #{rateId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+</mapper>
