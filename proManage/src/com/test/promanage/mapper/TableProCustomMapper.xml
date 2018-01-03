@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.promanage.mapper.TableProCustomMapper" >
+
+ <resultMap id="BaseResultMap" type="com.test.promanage.po.TableProjectCustom" >
+    
+    <!-- 项目id  -->
+    <result column="project_id" property="proId" jdbcType="VARCHAR" />
+    <!-- 用户id -->
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <!-- 用户姓名 -->
+    <result column="username" property="userName" jdbcType="VARCHAR" />
+    <!-- 用户说明 -->
+    <!-- <result column="userintro" property="jurisdictionName" jdbcType="VARCHAR" /> -->
+    <!-- 用户头像 -->
+    <result column="photo" property="userPhoto" jdbcType="VARCHAR" />
+    <!-- 项目名称 -->
+    <result column="projectname" property="proTitle" jdbcType="VARCHAR" />
+    <!-- 项目创建时间 -->
+    <result column="createtime" property="createDate" jdbcType="TIMESTAMP" />
+    <!-- 项目说明 -->
+    <result column="prointro" property="proIntro" jdbcType="VARCHAR" />
+    <!-- 项目进度 -->
+    <result column="ratename" property="proRate" jdbcType="VARCHAR" />
+    
+    <!-- 项目进度id -->
+    <result column="rateid" property="proRateId" jdbcType="INTEGER" />
+    <!-- 权限等级 -->
+    <result column="jurisdiction_name" property="jur" jdbcType="VARCHAR" />
+    <!-- 创建人 -->
+    <result column="createuser" property="createUser" jdbcType="VARCHAR" />
+    <!-- 创建人头像 -->
+    <result column="creatphoto" property="createPhoto" jdbcType="VARCHAR" />
+    
+    <!-- 权限等级id -->
+    <result column="jurisdiction_id" property="jurId" jdbcType="INTEGER" />
+  </resultMap>
+  
+<select id="SelectProByUid" parameterType="map" resultMap="BaseResultMap">
+
+SELECT aaa.project_id,aaa.user_id,aaa.username,aaa.photo,aaa.projectname,aaa.createtime,aaa.prointro,aaa.ratename,aaa.createuser,bbb.jurisdiction_name,aaa.creatphoto,bbb.jurisdiction_id,aaa.rateid from (
+SELECT aa.id,aa.project_id,aa.user_id,aa.jur_id,aa.username,aa.intro as userintro,aa.photo,bb.projectname,bb.createtime,bb.intro as prointro,bb.ratename ,bb.username as createuser,bb.photo as creatphoto,bb.rateid from (
+
+SELECT a.id,a.project_id,a.user_id,a.jur_id,b.username,b.intro,b.photo from (
+
+SELECT id,project_id,user_id,jur_id from pro_user_jur where user_id=#{uid,jdbcType=VARCHAR})as a LEFT JOIN (SELECT * from table_user)as b
+ON a.user_id=b.userid) as aa 
+LEFT JOIN(SELECT table_project.createtime,table_user.username,table_project.projectid,table_project.projectname,table_rate.ratename,table_project.intro,table_user.photo,table_project.rateid from table_user,table_project,table_rate WHERE table_user.userid=table_project.userid and table_project.rateid=table_rate.rateid)as bb
+ON aa.project_id=bb.projectid) as aaa LEFT JOIN (SELECT * from table_jurisdiction) as bbb
+ON aaa.jur_id=bbb.jurisdiction_id
+
+<!-- SELECT aaa.project_id,aaa.user_id,aaa.username,aaa.photo,aaa.projectname,aaa.createtime,aaa.prointro,aaa.ratename,aaa.createuser,bbb.jurisdiction_name from (
+SELECT aa.id,aa.project_id,aa.user_id,aa.jur_id,aa.username,aa.intro as userintro,aa.photo,bb.projectname,bb.createtime,bb.intro as prointro,bb.ratename ,bb.username as createuser from (
+SELECT a.id,a.project_id,a.user_id,a.jur_id,b.username,b.intro,b.photo from (
+SELECT id,project_id,user_id,jur_id from pro_user_jur where user_id=#{uid,jdbcType=VARCHAR})as a LEFT JOIN (SELECT * from table_user)as b
+ON a.user_id=b.userid) as aa 
+LEFT JOIN(SELECT table_project.createtime,table_user.username,table_project.projectid,table_project.projectname,table_rate.ratename,table_project.intro from table_user,table_project,table_rate WHERE table_user.userid=table_project.userid and table_project.rateid=table_rate.rateid)as bb
+ON aa.project_id=bb.projectid) as aaa LEFT JOIN (SELECT * from table_jurisdiction) as bbb
+ON aaa.jur_id=bbb.jurisdiction_id -->
+</select>
+</mapper>
