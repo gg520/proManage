@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    "<i class='glyphicon glyphicon-list-alt'></i>"+
 					    "</a>"+
 					    "<div class='media-body'>"+
-					        "<h4 class='media-heading'><a>"+item.versionName+"</a><small>"+item.ctime+"</small></h4>"+
+					        "<h4 class='media-heading'><a>"+item.versionName+"</a><span class='pull-right'><small>"+item.ctime+"</small></span></h4>"+
 					        item.intro+
 					    "</div>"+
 					"</div>";
@@ -550,7 +550,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    "<i class='glyphicon glyphicon-list-alt'></i>"+
 						    "</a>"+
 						    "<div class='media-body'>"+
-						        "<h4 class='media-heading'><span class='badge pull-right'>未完成</span><span class='pull-right'><small>任务人："+item.username+"</small></span><a>"+item.taskname+"</a></h4>"+
+						        "<h4 class='media-heading'><span class='badge pull-right'>未完成</span><span class='pull-right'><small>负责人："+item.username+"</small></span><a>"+item.taskname+"</a></h4>"+
 						        item.intro+
 							    "</div>"+
 							"</div>";
@@ -560,7 +560,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    "<i class='glyphicon glyphicon-list-alt'></i>"+
 						    "</a>"+
 						    "<div class='media-body'>"+
-						        "<h4 class='media-heading'><span class='badge pull-right'>完成</span><span class='pull-right'><small>任务人："+item.username+"</small></span><a>"+item.taskname+"</a></h4>"+
+						        "<h4 class='media-heading'><span class='badge pull-right'>完成</span><span class='pull-right'><small>负责人："+item.username+"</small></span><a>"+item.taskname+"</a></h4>"+
 						        item.intro+
 							    "</div>"+
 							"</div>";
@@ -614,7 +614,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  					$("#task_w").show();
  					var row1="<div class='alert alert-warning' role='alert' >"+
 			        	"暂时没有任务"+
-			    "</div>";
+			    		"</div>";
  					$("#my_task").html(row1);
  				}else{
  					$("#my_task").html("");
@@ -645,8 +645,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	 					$("#my_task").append(row);
  	 				});
  				}
- 				
- 				
  			}
      	});
     	

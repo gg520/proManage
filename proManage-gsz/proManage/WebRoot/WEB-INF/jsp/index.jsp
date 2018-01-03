@@ -53,8 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath }/index">首页</a></li>
-                <li><a href="${pageContext.request.contextPath }/about"">关于</a></li>
-                <li><a href="javascript:void(0)">联系人</a></li>
+                
                 <c:choose>
               	<c:when test="${sessionScope.user!=null }">
                 <%-- <li class="dropdown">
@@ -71,6 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   </ul>
                 </li>  --%>
                 <li><a href="${pageContext.request.contextPath }/admin/project/proList">我的</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath }/quit">退出</a></li>
                 </c:when>
                 <c:otherwise>
@@ -188,13 +189,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="panel-heading">
 												<h4 class="panel-title">
 													<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-														<i class="fa fa-bold"></i>Bootstrap Based
+														<i class="fa fa-bold"></i>Bootstrap 基础
 													</a>
 												</h4>
 											</div>
 											<div id="collapseOne" class="panel-collapse collapse in">
 												<div class="panel-body">
-													Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+													web网站项目的开发，使用bootstrap优秀的前台框架，让我们的界面更加的出色
 												</div>
 											</div>
 										</div>
@@ -202,13 +203,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="panel-heading">
 												<h4 class="panel-title">
 													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
-														<i class="fa fa-leaf"></i>Clean &amp; powerful code
+														<i class="fa fa-leaf"></i>spring-springMVC-mybatise
 													</a>
 												</h4>
 											</div>
 											<div id="collapseTwo" class="panel-collapse collapse">
 												<div class="panel-body">
-													Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+													一个优秀的项目，就要有良好的开发习惯和善于利用框架的优势
 												</div>
 											</div>
 										</div>
@@ -221,8 +222,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</h4>
 											</div>
 											<div id="collapseThree" class="panel-collapse collapse">
+												赏心悦目的前台界面不仅仅需要一个会利用现成的框架，也要有自己的前台渲染特色
 												<div class="panel-body">
-													Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
 												</div>
 											</div>
 										</div>

@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	 <link rel="icon" href="<%=path %>/img/system/favicon.ico"> 
-        <title>登陆</title>
+        <title>登录</title>
 
         <!-- CSS -->
         <link href="<%=path %>/js/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">项目管理</span>
-                <span class="icon-bar">/span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
@@ -46,8 +46,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="#first"><a href="index.html">首页</a></li>
-                <li><a href="${pageContext.request.contextPath }/about">关于</a></li>
-                <li><a href="#contact">联系人</a></li>
                 <li class="active"><a href="javascript:void(0)">登录</a></li>
               </ul>
               
@@ -65,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>项目管理</strong> 登陆</h1>
+                            <h1><strong>项目管理</strong> 登录</h1>
                             
                         </div>
                     </div>

@@ -62,7 +62,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="${pageContext.request.contextPath }/index">首页</a></li>
-            <li><a href="${pageContext.request.contextPath }/about">关于</a></li>
           </ul>
           <form class="navbar-form navbar-left" action="${pageContext.request.contextPath }/admin/project/searchProject"  onsubmit="return checkSubmit();">
           <!-- 查找项目的名称  全文搜索 模糊查询 -->
@@ -87,7 +86,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li><a href="Javascript:void(0)">任务</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header"></li>
-                    <li><a href="Javascript:void(0)">帮助</a></li>
                     <li><a href="Javascript:void(0)">设置</a></li>
                     <li><a href="${pageContext.request.contextPath }/quit">退出</a></li>
                   </ul>
