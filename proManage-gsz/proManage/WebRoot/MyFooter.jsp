@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <footer>
+   <footer><hr>
                 <p>&copy; 2017 中原工学院实训团队 &middot; <a href="javascript:void(0)">隐私</a> &middot; <a href="javascript:void(0)">条款</a></p>
             </footer>
   </body>

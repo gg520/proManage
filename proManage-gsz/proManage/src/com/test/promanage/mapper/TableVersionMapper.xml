@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.test.promanage.po.TableVersion" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="priject_id" property="prijectId" jdbcType="VARCHAR" />
+    <result column="version_name" property="versionName" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="file_id" property="fileId" jdbcType="INTEGER" />
   </resultMap>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, priject_id, create_time, file_id
+    id, priject_id, version_name, create_time, file_id
   </sql>
   <sql id="Blob_Column_List" >
     intro
@@ -123,10 +124,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.test.promanage.po.TableVersion" >
-    insert into table_version (id, priject_id, create_time, 
-      file_id, intro)
-    values (#{id,jdbcType=INTEGER}, #{prijectId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{fileId,jdbcType=INTEGER}, #{intro,jdbcType=LONGVARCHAR})
+    insert into table_version (id, priject_id, version_name, 
+      create_time, file_id, intro
+      )
+    values (#{id,jdbcType=INTEGER}, #{prijectId,jdbcType=VARCHAR}, #{versionName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{fileId,jdbcType=INTEGER}, #{intro,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.test.promanage.po.TableVersion" >
     insert into table_version
@@ -136,6 +139,9 @@
       </if>
       <if test="prijectId != null" >
         priject_id,
+      </if>
+      <if test="versionName != null" >
+        version_name,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -153,6 +159,9 @@
       </if>
       <if test="prijectId != null" >
         #{prijectId,jdbcType=VARCHAR},
+      </if>
+      <if test="versionName != null" >
+        #{versionName,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -180,6 +189,9 @@
       <if test="record.prijectId != null" >
         priject_id = #{record.prijectId,jdbcType=VARCHAR},
       </if>
+      <if test="record.versionName != null" >
+        version_name = #{record.versionName,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -198,6 +210,7 @@
     update table_version
     set id = #{record.id,jdbcType=INTEGER},
       priject_id = #{record.prijectId,jdbcType=VARCHAR},
+      version_name = #{record.versionName,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       file_id = #{record.fileId,jdbcType=INTEGER},
       intro = #{record.intro,jdbcType=LONGVARCHAR}
@@ -209,6 +222,7 @@
     update table_version
     set id = #{record.id,jdbcType=INTEGER},
       priject_id = #{record.prijectId,jdbcType=VARCHAR},
+      version_name = #{record.versionName,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       file_id = #{record.fileId,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -220,6 +234,9 @@
     <set >
       <if test="prijectId != null" >
         priject_id = #{prijectId,jdbcType=VARCHAR},
+      </if>
+      <if test="versionName != null" >
+        version_name = #{versionName,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -236,6 +253,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.test.promanage.po.TableVersion" >
     update table_version
     set priject_id = #{prijectId,jdbcType=VARCHAR},
+      version_name = #{versionName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       file_id = #{fileId,jdbcType=INTEGER},
       intro = #{intro,jdbcType=LONGVARCHAR}
@@ -244,6 +262,7 @@
   <update id="updateByPrimaryKey" parameterType="com.test.promanage.po.TableVersion" >
     update table_version
     set priject_id = #{prijectId,jdbcType=VARCHAR},
+      version_name = #{versionName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       file_id = #{fileId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

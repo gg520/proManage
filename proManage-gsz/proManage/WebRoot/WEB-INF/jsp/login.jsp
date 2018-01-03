@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <li class="#first"><a href="index.html">首页</a></li>
                 <li><a href="${pageContext.request.contextPath }/about">关于</a></li>
                 <li><a href="#contact">联系人</a></li>
-                <li class="active"><a href="javascript:void(0)">登陆</a></li>
+                <li class="active"><a href="javascript:void(0)">登录</a></li>
               </ul>
               
             </div>
@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <label class="sr-only" for="password">密码</label>
                                         <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password" required="required">
                                     </div>
-                                    <button type="submit" class="btn">登陆</button>
+                                    <button type="submit" class="btn">登录</button>
                                 </form>
                                 <span >
                                     <a href="javascript:void(0)">忘记密码</a>

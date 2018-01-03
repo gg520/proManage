@@ -11,6 +11,8 @@ public class TableTask {
 
     private String userId;
 
+    private Integer flag;
+
     private String intro;
 
     public Integer getTaskid() {
@@ -51,6 +53,14 @@ public class TableTask {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
     public String getIntro() {

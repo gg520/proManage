@@ -5,11 +5,15 @@ import java.util.Date;
 public class TableFile {
     private Integer fileid;
 
+    private String filename;
+
     private String filepath;
 
     private String proid;
 
     private String userid;
+
+    private Integer taskid;
 
     private Date createtime;
 
@@ -21,6 +25,14 @@ public class TableFile {
 
     public void setFileid(Integer fileid) {
         this.fileid = fileid;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename == null ? null : filename.trim();
     }
 
     public String getFilepath() {
@@ -45,6 +57,14 @@ public class TableFile {
 
     public void setUserid(String userid) {
         this.userid = userid == null ? null : userid.trim();
+    }
+
+    public Integer getTaskid() {
+        return taskid;
+    }
+
+    public void setTaskid(Integer taskid) {
+        this.taskid = taskid;
     }
 
     public Date getCreatetime() {
