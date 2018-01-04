@@ -94,5 +94,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
+<jsp:include page="/MyFooter.jsp"></jsp:include>
   </body>
 </html>

@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	 <link href="<%=path %>/css/login/style.css" rel="stylesheet">
 
   </head>
   

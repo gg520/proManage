@@ -19,7 +19,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<script src="<%=path %>/js/jquery-1.11.3.min.js">
+	</script>
+<script>
+$("document").ready(function(){
+	$("#newpwd2").blur(function(){
+		if($("#newpwd").val()!=$("#newpwd2").val())
+		{	
+			alert("2次输入不一致");
+			$("#submit").attr("disabled", true);
+		}
+	});	
+	$("#newpwd2").focus(function(){
+		$("#submit").attr("disabled", false);
+	});
+});
+</script>
   </head>
   
   <body>
@@ -77,15 +92,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">新密码</label>
-					 	<input type="password" name="newpwd" required="" placeholder="请输入新密码" class="form-control" id="exampleInputPassword1" />
+					 	<input type="password" id="newpwd" name="newpwd" required="" placeholder="请输入新密码" class="form-control" id="exampleInputPassword1" />
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">再次输入</label>
-					 	<input type="password" name="newpwd2"  required="" placeholder="请再次输入新密码" class="form-control" id="exampleInputPassword1" />
+					 	<input type="password" id="newpwd2" name="newpwd2" onblur="onkeup()" required="" placeholder="请再次输入新密码" class="form-control" id="exampleInputPassword1" />
 					</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								 <button type="submit" class="btn btn-default">更新</button>
+								 <button type="submit" id="submit" class="btn btn-default">更新</button>
 							</div>
 						</div>
 					</form>
@@ -102,6 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
+<jsp:include page="/MyFooter.jsp"></jsp:include>
 
 </body>
 </html>

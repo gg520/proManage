@@ -71,9 +71,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<label for="exampleInputPassword1">当前头像</label><br>
 						<div></div>					
 					 	<img alt="用户头像" width="240" height="240" src="${sessionScope.user.userPhoto }" />
+					 	
+					</div>  
+						<div class="form-group">
+						<label>请选择新的头像</label><br>
+						<div></div>					
+					
 					 	<input type="file" name="photo">
 					</div>  
-						
 					
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
@@ -93,6 +98,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
-
+<jsp:include page="/MyFooter.jsp"></jsp:include>
   </body>
 </html>
