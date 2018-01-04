@@ -23,14 +23,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 <script>
 $("document").ready(function(){
+	$("#password").focus(function(){
+		$("#err").html("");
+	});
+
 	$("#newpwd2").blur(function(){
 		if($("#newpwd").val()!=$("#newpwd2").val())
 		{	
-			alert("2次输入不一致");
+			$("#tis").html("2次输入不一致");
 			$("#submit").attr("disabled", true);
 		}
 	});	
 	$("#newpwd2").focus(function(){
+		$("#tis").html("");
 		$("#submit").attr("disabled", false);
 	});
 });
@@ -88,7 +93,7 @@ $("document").ready(function(){
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">原始密码</label>
-					 	<input type="password" required=""  name="password" placeholder="请输入原始密码" class="form-control" id="exampleInputPassword1" />
+					 	<input type="password" required="" id="password" name="password" placeholder="请输入原始密码" class="form-control" id="exampleInputPassword1" />
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">新密码</label>
@@ -97,6 +102,7 @@ $("document").ready(function(){
 					<div class="form-group">
 						<label for="exampleInputPassword1">再次输入</label>
 					 	<input type="password" id="newpwd2" name="newpwd2" onblur="onkeup()" required="" placeholder="请再次输入新密码" class="form-control" id="exampleInputPassword1" />
+						<font color="red"><label for="exampleInputPassword1" id="tis"></label><br></font>				
 					</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
@@ -106,10 +112,8 @@ $("document").ready(function(){
 					</form>
 				</div>
 				<div class="col-md-6 column">
-				<label for="exampleInputPassword1"><font color="red">${pwdError }</font></label><br>
-				<%
-                    request.getSession().removeAttribute("pwdError");
-                  %>
+				<label for="exampleInputPassword1" id="err"><font color="red">${pwdError }</font></label><br>				
+				
 				</div>
 				</div>
 				
