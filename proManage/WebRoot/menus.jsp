@@ -31,14 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="<%=path %>/js/ie-emulation-modes-warning.js"></script>
     <script src="<%=path %>/js/vendor/jquery.min.js"></script>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%-- <script src="<%=path %>/js/vendor/jquery.min.js"></script> --%>
-    <script src="<%=path %>/js/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="<%=path %>/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="<%=path %>/js/back/offcanvas.js"></script>
+    
+   <%--  <link href="<%=path %>/css/jumbotron-narrow.css" rel="stylesheet"> --%>
     <style type="text/css">
       a.user-profile{
         color: #5E6974 !important
@@ -68,18 +62,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="${pageContext.request.contextPath }/index">首页</a></li>
-            <li><a href="${pageContext.request.contextPath }/about">关于</a></li>
-            <li><a href="#contact">联系人</a></li>
           </ul>
-          <form class="navbar-form navbar-left" action="#">
+          <form class="navbar-form navbar-left" action="${pageContext.request.contextPath }/admin/project/searchProject"  onsubmit="return checkSubmit();">
           <!-- 查找项目的名称  全文搜索 模糊查询 -->
-            <input type="text" class="form-control" placeholder="Search Project" id="allSearch">
+            <input type="text" class="form-control" placeholder="Search Project" id="allSearch" onkeyup="searchProject()" name="str">
           </form>
           <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a href="javascript:viod(0)"class="user-profile dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <img alt="添加项目" src="<%=path%>/img/system/jiahao.jpg" class="user-profile" width="20" height="20" style="margin-right: 0px"><span class="caret"></span></a>
            	 <ul class="dropdown-menu">
-                <li><a href="Javascript:void(0)">添加新项目</a></li>
+                <li><a href="${pageContext.request.contextPath }/admin/project/creatPro">添加新项目</a></li>
               </ul>
            
            </li>
@@ -92,10 +84,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li class="dropdown-header"></li>
                     <li><a href="${pageContext.request.contextPath }/admin/project/proList">项目列表</a></li>
                     <li><a href="Javascript:void(0)">任务</a></li>
-                    <li><a href="Javascript:void(0)">管理我的项目</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header"></li>
-                    <li><a href="Javascript:void(0)">帮助</a></li>
                     <li><a href="${pageContext.request.contextPath }/admin/information/base">设置</a></li>
                     <li><a href="${pageContext.request.contextPath }/quit">退出</a></li>
                   </ul>
@@ -104,5 +94,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
+    <script type="text/javascript">
+    function searchProject(){
+    	//查询所有项目
+    	var comm=$("#allSearch").val();
+    	$.ajax({
+    		type:"POST",
+			url:"<%=path%>/admin/project/searchProject",
+			contentType:"application/json;charset=utf-8",
+			data:JSON.stringify(comm),
+			dataType:"json",
+			beforeSend:function(XMLHttpRequest){
+				//设置加载悬浮框
+			},
+			error:function(){
+				alert("加载失败，请刷新重试！");
+			},
+			success:function(data){
+				alert(data.length);
+			}
+    	});
+    }
+    function checkSubmit(){
+    	var comm=$("#allSearch").val();
+    	if(comm!=null&&comm.length>0){
+    		return true;
+    	}
+    	return false;
+    }
+    </script>
   </body>
 </html>

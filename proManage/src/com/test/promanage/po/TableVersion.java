@@ -7,6 +7,8 @@ public class TableVersion {
 
     private String prijectId;
 
+    private String versionName;
+
     private Date createTime;
 
     private Integer fileId;
@@ -27,6 +29,14 @@ public class TableVersion {
 
     public void setPrijectId(String prijectId) {
         this.prijectId = prijectId == null ? null : prijectId.trim();
+    }
+
+    public String getVersionName() {
+        return versionName;
+    }
+
+    public void setVersionName(String versionName) {
+        this.versionName = versionName == null ? null : versionName.trim();
     }
 
     public Date getCreateTime() {

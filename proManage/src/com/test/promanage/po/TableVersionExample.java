@@ -235,6 +235,76 @@ public class TableVersionExample {
             return (Criteria) this;
         }
 
+        public Criteria andVersionNameIsNull() {
+            addCriterion("version_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameIsNotNull() {
+            addCriterion("version_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameEqualTo(String value) {
+            addCriterion("version_name =", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameNotEqualTo(String value) {
+            addCriterion("version_name <>", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameGreaterThan(String value) {
+            addCriterion("version_name >", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameGreaterThanOrEqualTo(String value) {
+            addCriterion("version_name >=", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameLessThan(String value) {
+            addCriterion("version_name <", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameLessThanOrEqualTo(String value) {
+            addCriterion("version_name <=", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameLike(String value) {
+            addCriterion("version_name like", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameNotLike(String value) {
+            addCriterion("version_name not like", value, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameIn(List<String> values) {
+            addCriterion("version_name in", values, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameNotIn(List<String> values) {
+            addCriterion("version_name not in", values, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameBetween(String value1, String value2) {
+            addCriterion("version_name between", value1, value2, "versionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVersionNameNotBetween(String value1, String value2) {
+            addCriterion("version_name not between", value1, value2, "versionName");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

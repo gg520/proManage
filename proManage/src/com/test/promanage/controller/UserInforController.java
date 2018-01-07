@@ -116,7 +116,7 @@ public class UserInforController {
 			request.getSession().setAttribute("uploadError", "请选择一张jpg格式图片");
 
 		} else {
-			String filedir = "/download/";
+			String filedir = "/download/pic/";
 			String filename = UUIDUtils.getUUID() + photoName;
 			User user = (User) request.getSession().getAttribute("user");
 			// 得到当前修改头像的人的id 作为修改数据库的id并且把修改后的头像重新放回session中以便于及时显示

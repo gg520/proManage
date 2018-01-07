@@ -19,7 +19,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<script src="<%=path %>/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$("document").ready(function(){
+			$("#submit").click(function(){
+				var filepath=$("#pic").val();
+				var arr=filepath.split(".");
+				if(filepath=""){
+					alert("请选择一张图片");
+					return false;
+				}else if(arr[arr.length-1]!="jpg"&&arr[arr.length-1]!="jpeg"&&arr[arr.length-1]!="png"){
+					alert("请选择一张图片");
+					return false;
+				}
+			});
+		});
+	</script>
   </head>
   
   <body>
@@ -77,12 +92,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<label>请选择新的头像</label><br>
 						<div></div>					
 					
-					 	<input type="file" name="photo">
+					 	<input type="file" id="pic" name="photo">
 					</div>  
 					
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								 <button type="submit" class="btn btn-default">更新</button>
+								 <button type="submit" id="submit" class="btn btn-default">更新</button>
 							</div>
 						</div>
 					</form>

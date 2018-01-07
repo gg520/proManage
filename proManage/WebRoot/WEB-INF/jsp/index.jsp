@@ -53,11 +53,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath }/index">首页</a></li>
-                <li><a href="${pageContext.request.contextPath }/about"">关于</a></li>
-                <li><a href="javascript:void(0)">联系人</a></li>
+                
                 <c:choose>
               	<c:when test="${sessionScope.user!=null }">
-                <li class="dropdown">
+                <%-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的 <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="${pageContext.request.contextPath }/admin/project/proList">项目列表</a></li>
@@ -69,11 +68,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li><a href="${pageContext.request.contextPath }/quit">退出</a></li>
                    
                   </ul>
-                </li> 
+                </li>  --%>
+                <li><a href="${pageContext.request.contextPath }/admin/project/proList">我的</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                <li><a href="${pageContext.request.contextPath }/quit">退出</a></li>
                 </c:when>
                 <c:otherwise>
                 <li>
-                  <a href="${pageContext.request.contextPath }/login"><font color="">登陆</font></a>
+                  <a href="${pageContext.request.contextPath }/login"><font color="">登录</font></a>
                 </li>
                 </c:otherwise>
                 </c:choose>
@@ -164,6 +167,72 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <!-- <p><a class="btn btn-default" href="javascript:void(0)" role="button">详情 &raquo;</a></p> -->
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
+      <div class="row">
+      	<div class="col-md-12">
+			<h1 class="text-center">关于我们</h1>
+			<div class="separator"></div>
+			<p class="lead text-center">我们是刚刚起步的新人，刚刚接触到真真的开发中</p>
+							<br>
+							<div class="row">
+								<div class="col-md-6">
+									<h2 class="title">你的建议</h2>
+									
+									<p>Quo soluta provident, quod reiciendis. Dolores nam totam aut illum ex ratione harum molestias maxime minima tempore, possimus, laudantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									
+									<p>Esse sequi veniam, assumenda voluptate necessitatibus ipsa dicta vero, minima natus cum cupiditate magnam et placeat quo adipisci.</p>
+									<a href="page-about.html" class="btn btn-white">Learn More</a>
+									<div class="space hidden-md hidden-lg"></div>
+								</div>
+								<div class="col-md-6">
+									<div class="panel-group panel-dark" id="accordion">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+														<i class="fa fa-bold"></i>Bootstrap 基础
+													</a>
+												</h4>
+											</div>
+											<div id="collapseOne" class="panel-collapse collapse in">
+												<div class="panel-body">
+													web网站项目的开发，使用bootstrap优秀的前台框架，让我们的界面更加的出色
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+														<i class="fa fa-leaf"></i>spring-springMVC-mybatise
+													</a>
+												</h4>
+											</div>
+											<div id="collapseTwo" class="panel-collapse collapse">
+												<div class="panel-body">
+													一个优秀的项目，就要有良好的开发习惯和善于利用框架的优势
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
+														<i class="fa fa-html5"></i>HTML5/CSS3
+													</a>
+												</h4>
+											</div>
+											<div id="collapseThree" class="panel-collapse collapse">
+												赏心悦目的前台界面不仅仅需要一个会利用现成的框架，也要有自己的前台渲染特色
+												<div class="panel-body">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+						</div>
+      </div>
       <!-- START THE FEATURETTES -->
       <hr class="featurette-divider">
       <!-- FOOTER -->

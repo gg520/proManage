@@ -5,10 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.test.promanage.po.ProUserJur;
+import com.test.promanage.po.TableFile;
 import com.test.promanage.po.TableProject;
 import com.test.promanage.po.TableProjectCustom;
 import com.test.promanage.po.TableRate;
+import com.test.promanage.po.TableTask;
 import com.test.promanage.po.TableVersion;
+import com.test.promanage.po.TableVersionCustom;
+import com.test.promanage.po.TaskCustom;
 
 @Service
 public interface ProService {
@@ -104,7 +108,7 @@ public interface ProService {
 	 *
 	 *date 2017年12月7日 下午9:38:11
 	 */
-	List<ProUserJur> selectProUserJurByPUid(String proId,String uid)throws Exception;
+	ProUserJur selectProUserJurByPUid(String proId,String uid)throws Exception;
 	
 	/**
 	 * 
@@ -148,4 +152,102 @@ public interface ProService {
 	 */
 	TableVersion selectTableVersionByPid(String pid) throws Exception;
 	
+	/**
+	 * 查询项目的版本信息
+	 * 
+	 * 
+	 * @title ProService.java
+	 * @author guosuzhou
+	 * @param pid
+	 * @return
+	 * @throws Exception
+	 * 
+	 * @date 2018年1月2日
+	 */
+	 List<TableVersionCustom> selectVersionByPid(String pid) throws Exception;
+	
+	/**
+	 * 获取文件的信息
+	 * 
+	 * 
+	 * @title ProService.java
+	 * @author guosuzhou
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 * 
+	 * @date 2018年1月2日
+	 */
+	TableFile selectFileById(int id) throws Exception;
+	
+	/**
+	 * 全文模糊搜索
+	 * 
+	 * 
+	 * @title ProService.java
+	 * @author guosuzhou
+	 * @param tableProject
+	 * @return
+	 * @throws Exception
+	 * 
+	 * @date 2018年1月3日
+	 */
+	List<TableProjectCustom> selectProByLike(String str,String uid)throws Exception;
+	
+	/**
+	 * 从项目中删除用户
+	 * 
+	 * 
+	 * @title ProService.java
+	 * @author guosuzhou
+	 * @param pid
+	 * @return
+	 * @throws Exception
+	 * 
+	 * @date 2018年1月3日
+	 */
+	int deleteUserByPidUid(String pid,String uid) throws Exception;
+	
+	/**
+	 * 获取任务信息
+	 * 
+	 * 
+	 * @title ProService.java
+	 * @author guosuzhou
+	 * @param pid
+	 * @param uid
+	 * @return
+	 * @throws Exception
+	 * 
+	 * @date 2018年1月3日
+	 */
+	List<TableTask> selectTaskByPidUid(String pid,String uid) throws Exception;
+	
+	/**
+	 * 添加任务
+	 * 
+	 * 
+	 * @title ProService.java
+	 * @author guosuzhou
+	 * @param tableTask
+	 * @return
+	 * @throws Exception
+	 * 
+	 * @date 2018年1月3日
+	 */
+	int inserTask(TableTask tableTask) throws Exception;
+	
+	/**
+	 * 获取任务信息
+	 * 
+	 * 
+	 * @title ProService.java
+	 * @author guosuzhou
+	 * @param pid
+	 * @return
+	 * @throws Exception
+	 * 
+	 * @date 2018年1月3日
+	 */
+	List<TaskCustom> selectTaskInformByPid(String pid)throws Exception;
 }

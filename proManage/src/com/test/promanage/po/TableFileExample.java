@@ -165,6 +165,76 @@ public class TableFileExample {
             return (Criteria) this;
         }
 
+        public Criteria andFilenameIsNull() {
+            addCriterion("filename is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameIsNotNull() {
+            addCriterion("filename is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameEqualTo(String value) {
+            addCriterion("filename =", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameNotEqualTo(String value) {
+            addCriterion("filename <>", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameGreaterThan(String value) {
+            addCriterion("filename >", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameGreaterThanOrEqualTo(String value) {
+            addCriterion("filename >=", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameLessThan(String value) {
+            addCriterion("filename <", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameLessThanOrEqualTo(String value) {
+            addCriterion("filename <=", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameLike(String value) {
+            addCriterion("filename like", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameNotLike(String value) {
+            addCriterion("filename not like", value, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameIn(List<String> values) {
+            addCriterion("filename in", values, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameNotIn(List<String> values) {
+            addCriterion("filename not in", values, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameBetween(String value1, String value2) {
+            addCriterion("filename between", value1, value2, "filename");
+            return (Criteria) this;
+        }
+
+        public Criteria andFilenameNotBetween(String value1, String value2) {
+            addCriterion("filename not between", value1, value2, "filename");
+            return (Criteria) this;
+        }
+
         public Criteria andFilepathIsNull() {
             addCriterion("filepath is null");
             return (Criteria) this;
@@ -375,6 +445,66 @@ public class TableFileExample {
             return (Criteria) this;
         }
 
+        public Criteria andTaskidIsNull() {
+            addCriterion("taskid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidIsNotNull() {
+            addCriterion("taskid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidEqualTo(Integer value) {
+            addCriterion("taskid =", value, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidNotEqualTo(Integer value) {
+            addCriterion("taskid <>", value, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidGreaterThan(Integer value) {
+            addCriterion("taskid >", value, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("taskid >=", value, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidLessThan(Integer value) {
+            addCriterion("taskid <", value, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidLessThanOrEqualTo(Integer value) {
+            addCriterion("taskid <=", value, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidIn(List<Integer> values) {
+            addCriterion("taskid in", values, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidNotIn(List<Integer> values) {
+            addCriterion("taskid not in", values, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidBetween(Integer value1, Integer value2) {
+            addCriterion("taskid between", value1, value2, "taskid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskidNotBetween(Integer value1, Integer value2) {
+            addCriterion("taskid not between", value1, value2, "taskid");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatetimeIsNull() {
             addCriterion("createtime is null");
             return (Criteria) this;
@@ -432,6 +562,66 @@ public class TableFileExample {
 
         public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
             addCriterion("createtime not between", value1, value2, "createtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIsNull() {
+            addCriterion("flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIsNotNull() {
+            addCriterion("flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagEqualTo(Integer value) {
+            addCriterion("flag =", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotEqualTo(Integer value) {
+            addCriterion("flag <>", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagGreaterThan(Integer value) {
+            addCriterion("flag >", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagGreaterThanOrEqualTo(Integer value) {
+            addCriterion("flag >=", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagLessThan(Integer value) {
+            addCriterion("flag <", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagLessThanOrEqualTo(Integer value) {
+            addCriterion("flag <=", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIn(List<Integer> values) {
+            addCriterion("flag in", values, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotIn(List<Integer> values) {
+            addCriterion("flag not in", values, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagBetween(Integer value1, Integer value2) {
+            addCriterion("flag between", value1, value2, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotBetween(Integer value1, Integer value2) {
+            addCriterion("flag not between", value1, value2, "flag");
             return (Criteria) this;
         }
     }

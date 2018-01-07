@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	
   </head>
   
   <body>
@@ -104,5 +104,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </div>
 <jsp:include page="/MyFooter.jsp"></jsp:include>
+<script src="<%=path %>/js/dist/js/bootstrap.min.js"></script>
+	<script src="<%=path %>/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="<%=path %>/js/back/offcanvas.js"></script>
   </body>
 </html>

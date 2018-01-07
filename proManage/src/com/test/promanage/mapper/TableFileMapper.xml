@@ -3,10 +3,13 @@
 <mapper namespace="com.test.promanage.mapper.TableFileMapper" >
   <resultMap id="BaseResultMap" type="com.test.promanage.po.TableFile" >
     <id column="fileid" property="fileid" jdbcType="INTEGER" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
     <result column="filepath" property="filepath" jdbcType="VARCHAR" />
     <result column="proid" property="proid" jdbcType="VARCHAR" />
     <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="taskid" property="taskid" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.test.promanage.po.TableFile" extends="BaseResultMap" >
     <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
@@ -70,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    fileid, filepath, proid, userid, createtime
+    fileid, filename, filepath, proid, userid, taskid, createtime, flag
   </sql>
   <sql id="Blob_Column_List" >
     intro
@@ -124,11 +127,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.test.promanage.po.TableFile" >
-    insert into table_file (fileid, filepath, proid, 
-      userid, createtime, intro
+    insert into table_file (fileid, filename, filepath, 
+      proid, userid, taskid, 
+      createtime, flag, intro
       )
-    values (#{fileid,jdbcType=INTEGER}, #{filepath,jdbcType=VARCHAR}, #{proid,jdbcType=VARCHAR}, 
-      #{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{intro,jdbcType=LONGVARCHAR}
+    values (#{fileid,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{proid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{taskid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, #{intro,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.test.promanage.po.TableFile" >
@@ -136,6 +141,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="fileid != null" >
         fileid,
+      </if>
+      <if test="filename != null" >
+        filename,
       </if>
       <if test="filepath != null" >
         filepath,
@@ -146,8 +154,14 @@
       <if test="userid != null" >
         userid,
       </if>
+      <if test="taskid != null" >
+        taskid,
+      </if>
       <if test="createtime != null" >
         createtime,
+      </if>
+      <if test="flag != null" >
+        flag,
       </if>
       <if test="intro != null" >
         intro,
@@ -156,6 +170,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="fileid != null" >
         #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
       </if>
       <if test="filepath != null" >
         #{filepath,jdbcType=VARCHAR},
@@ -166,8 +183,14 @@
       <if test="userid != null" >
         #{userid,jdbcType=VARCHAR},
       </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
       </if>
       <if test="intro != null" >
         #{intro,jdbcType=LONGVARCHAR},
@@ -186,6 +209,9 @@
       <if test="record.fileid != null" >
         fileid = #{record.fileid,jdbcType=INTEGER},
       </if>
+      <if test="record.filename != null" >
+        filename = #{record.filename,jdbcType=VARCHAR},
+      </if>
       <if test="record.filepath != null" >
         filepath = #{record.filepath,jdbcType=VARCHAR},
       </if>
@@ -195,8 +221,14 @@
       <if test="record.userid != null" >
         userid = #{record.userid,jdbcType=VARCHAR},
       </if>
+      <if test="record.taskid != null" >
+        taskid = #{record.taskid,jdbcType=INTEGER},
+      </if>
       <if test="record.createtime != null" >
         createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=INTEGER},
       </if>
       <if test="record.intro != null" >
         intro = #{record.intro,jdbcType=LONGVARCHAR},
@@ -209,10 +241,13 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update table_file
     set fileid = #{record.fileid,jdbcType=INTEGER},
+      filename = #{record.filename,jdbcType=VARCHAR},
       filepath = #{record.filepath,jdbcType=VARCHAR},
       proid = #{record.proid,jdbcType=VARCHAR},
       userid = #{record.userid,jdbcType=VARCHAR},
+      taskid = #{record.taskid,jdbcType=INTEGER},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      flag = #{record.flag,jdbcType=INTEGER},
       intro = #{record.intro,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,10 +256,13 @@
   <update id="updateByExample" parameterType="map" >
     update table_file
     set fileid = #{record.fileid,jdbcType=INTEGER},
+      filename = #{record.filename,jdbcType=VARCHAR},
       filepath = #{record.filepath,jdbcType=VARCHAR},
       proid = #{record.proid,jdbcType=VARCHAR},
       userid = #{record.userid,jdbcType=VARCHAR},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+      taskid = #{record.taskid,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      flag = #{record.flag,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -232,6 +270,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.test.promanage.po.TableFile" >
     update table_file
     <set >
+      <if test="filename != null" >
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
       <if test="filepath != null" >
         filepath = #{filepath,jdbcType=VARCHAR},
       </if>
@@ -241,8 +282,14 @@
       <if test="userid != null" >
         userid = #{userid,jdbcType=VARCHAR},
       </if>
+      <if test="taskid != null" >
+        taskid = #{taskid,jdbcType=INTEGER},
+      </if>
       <if test="createtime != null" >
         createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
       </if>
       <if test="intro != null" >
         intro = #{intro,jdbcType=LONGVARCHAR},
@@ -252,19 +299,25 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.test.promanage.po.TableFile" >
     update table_file
-    set filepath = #{filepath,jdbcType=VARCHAR},
+    set filename = #{filename,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
       proid = #{proid,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=VARCHAR},
+      taskid = #{taskid,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
       intro = #{intro,jdbcType=LONGVARCHAR}
     where fileid = #{fileid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.test.promanage.po.TableFile" >
     update table_file
-    set filepath = #{filepath,jdbcType=VARCHAR},
+    set filename = #{filename,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
       proid = #{proid,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
+      taskid = #{taskid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER}
     where fileid = #{fileid,jdbcType=INTEGER}
   </update>
 </mapper>

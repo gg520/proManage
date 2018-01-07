@@ -35,14 +35,15 @@ public class userController {
 	 *date 2017年12月7日 下午9:35:30
 	 */
 	@RequestMapping(value="verifyUserId",method={RequestMethod.POST})
-	public @ResponseBody int verifyUserId(@RequestBody ProUserJur proUserJur)throws Exception{
+	public  @ResponseBody int verifyUserId(@RequestBody ProUserJur proUserJur)throws Exception{
 		int i=0;
+		//该用户是否存在
 		i=userService.selectUserById(proUserJur.getUserId());
 		if(i==1){
-			//查看是否已经有该人
+			//存在，查看是否已经有该人
 			if(proUserJur.getProjectId()!=null){
-				List<ProUserJur> proUserJurs=proService.selectProUserJurByPUid(proUserJur.getProjectId(),proUserJur.getUserId());
-				if(proUserJurs!=null&&proUserJurs.size()>0){
+				ProUserJur proUserJurs=proService.selectProUserJurByPUid(proUserJur.getProjectId(),proUserJur.getUserId());
+				if(proUserJurs!=null){
 					//已经添加过该用户
 					return 2;
 				}

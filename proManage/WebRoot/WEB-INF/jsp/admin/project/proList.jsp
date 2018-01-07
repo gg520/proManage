@@ -79,20 +79,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					alert("加载失败，请刷新重试！");
 				},
 				success:function(data){
-					$(data).each(function(index,item){
+					if(data.length>0){
+						//有项目，查看项目
+						$(data).each(function(index,item){
+							
+							var row="<div class='panel panel-warning col-xs-6 col-lg-4'>"+
+								"<div class='panel-heading'>"+
+								"<h3 class='panel-title'><a href='${pageContext.request.contextPath }/admin/project/projectDetail/"+item.proId+"'>"+item.proTitle+"</a><small>java</small></h3>"+
+								"</div>"+
+								"<div class='panel-body'>";
+								if(item.proIntro.length<=14){
+									row=row+"<p title='"+item.proIntro+"'>"+item.proIntro+"<br><br></p></div></div>";
+								}else{
+									row=row+"<p title='"+item.proIntro+"'>"+item.proIntro.substring(0,27)+"...</p></div></div>";
+								} 
+							$("#proList").append(row); 
+						});
+					}else{
+						//创建项目，
 						
-						var row="<div class='panel panel-warning col-xs-6 col-lg-4'>"+
-							"<div class='panel-heading'>"+
-							"<h3 class='panel-title'><a href='Javascript:void(0)'>"+item.proTitle+"</a><small>java</small></h3>"+
-							"</div>"+
-							"<div class='panel-body'>";
-							if(item.proIntro.length<=14){
-								row=row+"<p title='"+item.proIntro+"'>"+item.proIntro+"<br><br></p></div></div>";
-							}else{
-								row=row+"<p title='"+item.proIntro+"'>"+item.proIntro.substring(0,27)+"...</p></div></div>";
-							} 
-						$("#proList").append(row); 
-					});
+					}
+					
 				}
 			});
        });
@@ -118,46 +125,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="panel-body">
 					<div id="proList">
 					
-						<!--<div class="panel panel-warning col-xs-6 col-lg-4">
-							<div class="panel-heading">
-								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
-							</div>
-							<div class="panel-body">
-								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							</div>
-						</div>
-						<div class="panel panel-warning col-xs-6 col-lg-4">
-							<div class="panel-heading">
-								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
-							</div>
-							<div class="panel-body">
-								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							</div>
-						</div>
-						<div class="panel panel-warning col-xs-6 col-lg-4">
-							<div class="panel-heading">
-								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
-							</div>
-							<div class="panel-body">
-								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							</div>
-						</div>
-						<div class="panel panel-warning col-xs-6 col-lg-4">
-							<div class="panel-heading">
-								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
-							</div>
-							<div class="panel-body">
-								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							</div>
-						</div>
-						<div class="panel panel-warning col-xs-6 col-lg-4">
-							<div class="panel-heading">
-								<h3 class="panel-title"><a href="Javascript:void(0)">测试项目</a><small>java</small></h3>
-							</div>
-							<div class="panel-body">
-								 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							</div>
-						</div> -->
             		</div>
 				</div>
 			</div>
@@ -179,6 +146,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
     </div><!--/.container-->
 
-    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%-- <script src="<%=path %>/js/vendor/jquery.min.js"></script> --%>
+    <script src="<%=path %>/js/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="<%=path %>/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="<%=path %>/js/back/offcanvas.js"></script>
   </body>
 </html>
